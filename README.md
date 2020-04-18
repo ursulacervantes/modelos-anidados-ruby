@@ -9,9 +9,20 @@ Un formulario anidado nos permite generar una mejor experiencia de usuario al tr
 
 En este tutorial crearemos formularios anidados **(nested forms)** ⛓ para listar **Bancos y sus sucursales**. Al finalizar, podremos editar un banco y sus sucursales es un único formulario 📝.
 
+### Tabla de contenidos
+1. [Crear el proyecto](#paso1)
+2. [Crear scaffolds](#paso2)
+3. [Asociando los modelos y creando las validaciones](#paso3)
+4. [Mostrando las sucursales en el detalle del banco](#paso4)
+2. [Modificando el formulario del modelo bank](#paso5)
+2. [Editando una sucursal](#paso6)
+2. [Agregar una nueva sucursal](#paso7)
+2. [Borrar una sucursal](#paso8)
+2. [Más información](#more-info)
+2. [Siguientes pasos](#next-steps)
 
 
-## Crear el proyecto
+## Crear el proyecto <a name="paso1"></a>
 
 ```ruby
 rails new Bancos
@@ -19,7 +30,7 @@ cd Bancos
 ```
 
 
-## Crear scaffolds
+## Crear scaffolds <a name="paso2"></a>
 
 > *Scaffold* se refiere a la generación automática de un conjunto simple de modelo, vista y controlador. Es una forma rápida de generar la mayor parte de piezas de una aplicación.
 
@@ -59,11 +70,11 @@ end
  ```
 
 
-## Asociando los modelos y creando las validaciones
+## Asociando los modelos y creando las validaciones <a name="paso3"></a>
 
 Ahora vamos a crear la asociación entre los modelos, que en este caso es una relación de `uno a muchos`. Es decir, **un banco puede tener muchas sucursales pero una sucursal solo puede pertenecer a un banco**. También validaremos los campos que son obligatorios para nuestros modelos.
 
-> **Tip:** 💡 se puede añadir un método llamado `to_s` y pedirle que imprima la columna que queremos cuando llamamos al objeto y así no tener que especificarlo cada vez que lo usamos. Ej: `instancia` v/s `instancia.columna`
+> 💡**Tip:** se puede añadir un método llamado `to_s` y pedirle que imprima la columna que queremos cuando llamamos al objeto y así no tener que especificarlo cada vez que lo usamos. Ej: `instancia` v/s `instancia.columna`
 
 
 ```ruby
@@ -123,7 +134,7 @@ Ahora iniciamos el servidor
 rails s
 ```
 
-## Mostrando las sucursales en el detalle del banco
+## Mostrando las sucursales en el detalle del banco <a name="paso4"></a>
 
 Cuando entremos al detalle de un banco nos debe mostrar todas las sucursales asociadas a este. Para esto tenemos que modificar en archivo `/app/views/banks/show.html.erb` y agregar lo que esta entre la linea 8 y 18:
 
@@ -155,7 +166,7 @@ Cuando entremos al detalle de un banco nos debe mostrar todas las sucursales aso
 <%= link_to 'Back', banks_path %>
 ```
 
-## Modificando el formulario del modelo `bank`
+## Modificando el formulario del modelo `bank` <a name="paso5"></a>
 
 En el siguiente paso modificaremos el formulario del modelo `bank` para que podamos agregar sucursales cuando entramos a editar el banco. Para esto usaremos el **Helper** `fields_for`.
 
@@ -200,7 +211,7 @@ end
 Si refrescamos la página veremos que se mostrarán las sucursales asociadas al banco seleccionado 🏦.
 
 
-## Editando una sucursal
+## Editando una sucursal <a name="paso6"></a>
 
 Si tratamos de editar alguna de las sucursales nos daremos cuenta que el cambio no se aplica. Revisemos la consola y veremos el siguiente mensaje:
 
@@ -227,7 +238,7 @@ end
 Ahora si se aplicaran los cambios cuando editamos una sucursal ✨
 
 
-## Agregar una nueva sucursal
+## Agregar una nueva sucursal <a name="paso7"></a>
 
 Ya podemos editar un banco y listar las sucursales asociadas. Sin embargo, todavía nos podemos añadir una nueva sucursal. Para esto modificaremos el método edit en ` /app/controllers/banks_controller.rb`
 
@@ -284,7 +295,7 @@ Para tener la posibilidad de añadir una sucursal en el mismo formulario necesit
 ```
 
 
-## Borrar una sucursal en el formulario del banco
+## Borrar una sucursal en el formulario del banco <a name="paso8"></a>
 
 Ahora somos capaces de editar y crear sucursales en el formulario del banco. Pero aún no podemos eliminar en este formulario. Para poder hacer esto necesitaremos agregar `allow_destroy: true` a nuestro `accepts_nested_attributes_for:`
 
@@ -338,14 +349,14 @@ Y obviamente tenemos que agregar este atributo en los strong parameter del contr
 Ahora si podemos **agregar, editar y eliminar sucursales** desde el mismo formulario del **banco**!! 🎉
 
 
-## Más información
+## Más información <a name="more-info"></a>
 
 * Mas sobre **Nested Forms** en este [link](https://guides.rubyonrails.org/form_helpers.html#building-complex-forms)
 
 * Si quieres aprender mas sobre Nested Attributes puede revisar el siguiente [link](https://api.rubyonrails.org/classes/ActiveRecord/NestedAttributes/ClassMethods.html)
 
 
-## Siguientes pasos
+## Siguientes pasos <a name="next-steps"></a>
 
 ### Configurar el sitio agregando Bootstrap
 
