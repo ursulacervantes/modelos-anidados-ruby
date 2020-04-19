@@ -40,11 +40,16 @@ Vamos a necesitar los siguientes dos **scaffolds** para nuestro ejemplo:
 ```ruby
 rails g scaffold Bank name:string
 rails g scaffold BankSubsidiary address:string bank:references
-rake db:migrate
 ```
 
 La opción `:references` crea un campo que hace referencia al modelo, en este caso `bank`.
 
+```ruby
+rake db:migrate
+```
+Tenemos que ejecutar la migración puesto que hemos creado un nuevo modelo.
+
+> Las migraciones son clases de Ruby que están diseñadas para simplificar la creación y modificación de tablas en la base de datos. Rails usa el comando rake para ejecutar las migraciones.
 
  Revisemos el schema.
 
@@ -107,8 +112,8 @@ Usaremos el archivo `db/seeds.rb` para crear datos para probar la aplicación.
 #
 # Examples:
 #
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
+#   Character.create(name: 'Luke', movie: movies.first)
 
 scotiabank = Bank.create(name: 'Banco Scotiabank')
 interbank = Bank.create(name: 'Banco Interbank')
@@ -116,7 +121,7 @@ interbank = Bank.create(name: 'Banco Interbank')
   scotiabank.bank_subsidiaries.create(address: bs)
 end
 ['Av. El sol 421, Cusco', 'Av. Calle Nueva 106, Cusco'].each do |bs|
-  interbank.bank_subsidiaries.create(addredd: bs)
+  interbank.bank_subsidiaries.create(address: bs)
 end
 ```
 
@@ -174,13 +179,13 @@ Modificamos el archivo `app/views/bank/_form.html.erb`
 
 ```ruby
 <div class="field">
-  <%= f.label :name %><br>
-  <%= f.text_field :name %>
+  <%= form.label :name %><br>
+  <%= form.text_field :name %>
 </div>
 
 <h2>Sucursales</h2>
 
-<%= f.fields_for :bank_subsidiaries do | subsidiary | %>
+<%= form.fields_for :bank_subsidiaries do | subsidiary | %>
   <div class="bank_subsidiaries_fields">
     <div class="fields">
       <%= subsidiary.label :address, "Direccion" %><br>
@@ -244,22 +249,10 @@ Ya podemos editar un banco y listar las sucursales asociadas. Sin embargo, todav
 
 
 ```ruby
-# GET /banks/new
- def new
-   @bank = Bank.new
- end
-
  # GET /banks/1/edit
  def edit
    @bank.bank_subsidiaries.build
  end
-
- # POST /banks
- # POST /banks.json
- def create
-   @bank = Bank.new(bank_params)
-
-   respond_to do |format|
 ```
 
 Ahora podemos agregar una nueva sucursal. Sin embargo, si hacemos una prueba tendremos un error. Esto se debe a que en nuestro modelo `bank_subsidiary` no permite tener el campo `address` vacío (validates :address, presence: true). Esta validación no la podemos eliminar por lo que tendremos que hacer lo siguiente:
@@ -281,7 +274,7 @@ class Bank < ActiveRecord::Base
 end
 ```
 
-Lo que hicimos fue, a nuestro `accept_nested_attributes_for`, agregar un `reject_if` que comprueba si el atributo anidado está en blanco. Si lo esta no toma en cuenta el `accept_nested_attributes_for` y envía el formulario sin ellos.
+Lo que hicimos fue, a nuestro `accept_nested_attributes_for`, agregar un `reject_if` que comprueba si el atributo anidado está en blanco. Si no esta no toma en cuenta el `accept_nested_attributes_for` y envía el formulario sin ellos.
 
 Para tener la posibilidad de añadir una sucursal en el mismo formulario necesitamos un pequeño cambio en el método new de `/app/controllers/banks_controller.rb`
 
@@ -300,8 +293,6 @@ Para tener la posibilidad de añadir una sucursal en el mismo formulario necesit
 Ahora somos capaces de editar y crear sucursales en el formulario del banco. Pero aún no podemos eliminar en este formulario. Para poder hacer esto necesitaremos agregar `allow_destroy: true` a nuestro `accepts_nested_attributes_for:`
 
 
-Modificar nuestro formulario `app/views/bank/_form.html.erb` para añadir una opción de borrar
-
 ```ruby
 class Bank < ActiveRecord::Base
   has_many :bank_subsidiaries, dependent: :destroy
@@ -319,8 +310,6 @@ end
 ```
 
 También tenemos que modificar nuestro formulario para añadir la opción de borrar. Para esto agregaremos un campo `check_box` y lo pasamos como atributo  `:_destroy` (este se tiene que llamar así).
-
-Agregar este atributo en los **strong parameter** del controlador `app/controllers/banks_controller.rb`
 
 
 ```ruby

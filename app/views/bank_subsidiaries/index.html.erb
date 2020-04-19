@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Bank Subsidiaries</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Address</th>
+      <th>Bank</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bank_subsidiaries.each do |bank_subsidiary| %>
+      <tr>
+        <td><%= bank_subsidiary.address %></td>
+        <td><%= bank_subsidiary.bank_id %></td>
+        <td><%= link_to 'Show', bank_subsidiary %></td>
+        <td><%= link_to 'Edit', edit_bank_subsidiary_path(bank_subsidiary) %></td>
+        <td><%= link_to 'Destroy', bank_subsidiary, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Bank Subsidiary', new_bank_subsidiary_path, class: 'btn btn-primary' %>

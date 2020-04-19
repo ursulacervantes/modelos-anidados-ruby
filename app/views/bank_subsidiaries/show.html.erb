@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @bank_subsidiary.address %>
+</p>
+
+<p>
+  <strong>Bank:</strong>
+  <%= @bank_subsidiary.bank_id %>
+</p>
+
+<%= link_to 'Edit', edit_bank_subsidiary_path(@bank_subsidiary), class: 'btn btn-primary' %>
+<%= link_to 'Back', bank_subsidiaries_path, class: 'btn btn-default' %>

@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @bank.name %>
+</p>
+
+<h2>Sucursales</h2>
+
+<% if @bank.bank_subsidiaries.any? %>
+	<ul>
+		<% @bank.bank_subsidiaries.each do |subsidiary| %>
+		<li><%= link_to subsidiary, subsidiary %></li> # no es necesario usar .address gracias al método to_s que definimos mas arriba
+		<% end %>
+	</ul>
+<% else %>
+	<p>no hay sucursales</p>
+<% end %>
+
+<%= link_to 'Edit', edit_bank_path(@bank), class: 'btn btn-primary' %>
+<%= link_to 'Back', banks_path, class: 'btn btn-default' %>

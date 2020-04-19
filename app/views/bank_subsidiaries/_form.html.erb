@@ -1,0 +1,27 @@
+<%= form_with(model: bank_subsidiary, local: true) do |form| %>
+  <% if bank_subsidiary.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(bank_subsidiary.errors.count, "error") %> prohibited this bank_subsidiary from being saved:</h2>
+
+      <ul>
+        <% bank_subsidiary.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :address %>
+    <%= form.text_field :address, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :bank_id %>
+    <%= form.text_field :bank_id, class: 'form-control' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Submit", class: "btn btn-default btn-primary" %>
+  </div>
+<% end %>

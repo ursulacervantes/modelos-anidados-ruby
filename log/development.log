@@ -1,0 +1,2326 @@
+  [1m[35m (3.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateBanks (20200418235644)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE TABLE "banks" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (1.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200418235644"]]
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateBankSubsidiaries (20200418235658)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE "bank_subsidiaries" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "address" varchar, "bank_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_2457f31678"
+FOREIGN KEY ("bank_id")
+  REFERENCES "banks" ("id")
+)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_bank_subsidiaries_on_bank_id" ON "bank_subsidiaries" ("bank_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200418235658"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.7ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-04-18 23:59:51.308382"], ["updated_at", "2020-04-18 23:59:51.308382"]]
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBank Create (0.9ms)[0m  [1m[32mINSERT INTO "banks" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Banco Scotiabank"], ["created_at", "2020-04-19 00:05:08.388528"], ["updated_at", "2020-04-19 00:05:08.388528"]]
+  [1m[35m (1.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBank Create (0.7ms)[0m  [1m[32mINSERT INTO "banks" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Banco Interbank"], ["created_at", "2020-04-19 00:05:08.393971"], ["updated_at", "2020-04-19 00:05:08.393971"]]
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBankSubsidiary Create (1.2ms)[0m  [1m[32mINSERT INTO "bank_subsidiaries" ("address", "bank_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "Av. La Molina 562, Lima"], ["bank_id", 1], ["created_at", "2020-04-19 00:05:08.486067"], ["updated_at", "2020-04-19 00:05:08.486067"]]
+  [1m[35m (2.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBankSubsidiary Create (0.4ms)[0m  [1m[32mINSERT INTO "bank_subsidiaries" ("address", "bank_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "Av. Risso 5561 Of. 202 P.2 - Lince"], ["bank_id", 1], ["created_at", "2020-04-19 00:05:08.495172"], ["updated_at", "2020-04-19 00:05:08.495172"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBankSubsidiary Create (8.6ms)[0m  [1m[32mINSERT INTO "bank_subsidiaries" ("address", "bank_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "Agustinas N° 1070 P. 6 Of. 52, Centro Cívico"], ["bank_id", 1], ["created_at", "2020-04-19 00:05:08.500752"], ["updated_at", "2020-04-19 00:05:08.500752"]]
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBank Create (1.2ms)[0m  [1m[32mINSERT INTO "banks" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Banco Scotiabank"], ["created_at", "2020-04-19 00:05:54.803406"], ["updated_at", "2020-04-19 00:05:54.803406"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBank Create (0.5ms)[0m  [1m[32mINSERT INTO "banks" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Banco Interbank"], ["created_at", "2020-04-19 00:05:54.808994"], ["updated_at", "2020-04-19 00:05:54.808994"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBankSubsidiary Create (1.2ms)[0m  [1m[32mINSERT INTO "bank_subsidiaries" ("address", "bank_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "Av. La Molina 562, Lima"], ["bank_id", 3], ["created_at", "2020-04-19 00:05:54.831121"], ["updated_at", "2020-04-19 00:05:54.831121"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBankSubsidiary Create (0.5ms)[0m  [1m[32mINSERT INTO "bank_subsidiaries" ("address", "bank_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "Av. Risso 5561 Of. 202 P.2 - Lince"], ["bank_id", 3], ["created_at", "2020-04-19 00:05:54.836847"], ["updated_at", "2020-04-19 00:05:54.836847"]]
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBankSubsidiary Create (0.6ms)[0m  [1m[32mINSERT INTO "bank_subsidiaries" ("address", "bank_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "Agustinas N° 1070 P. 6 Of. 52, Centro Cívico"], ["bank_id", 3], ["created_at", "2020-04-19 00:05:54.842324"], ["updated_at", "2020-04-19 00:05:54.842324"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBankSubsidiary Create (0.5ms)[0m  [1m[32mINSERT INTO "bank_subsidiaries" ("address", "bank_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "Av. El sol 421, Cusco"], ["bank_id", 4], ["created_at", "2020-04-19 00:05:54.850685"], ["updated_at", "2020-04-19 00:05:54.850685"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBankSubsidiary Create (0.5ms)[0m  [1m[32mINSERT INTO "bank_subsidiaries" ("address", "bank_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "Av. Calle Nueva 106, Cusco"], ["bank_id", 4], ["created_at", "2020-04-19 00:05:54.856661"], ["updated_at", "2020-04-19 00:05:54.856661"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/" for ::1 at 2020-04-19 02:06:09 +0200
+  [1m[35m (7.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Library/Ruby/Gems/2.6.0/gems/railties-6.0.2.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Library/Ruby/Gems/2.6.0/gems/railties-6.0.2.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 19.5ms | Allocations: 478)
+Completed 200 OK in 78ms (Views: 35.6ms | ActiveRecord: 0.0ms | Allocations: 2799)
+
+
+Started GET "/banks" for ::1 at 2020-04-19 02:06:49 +0200
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.5ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  ↳ app/views/banks/index.html.erb:14
+  Rendered banks/index.html.erb within layouts/application (Duration: 8.8ms | Allocations: 4250)
+[Webpacker] Compiling...
+[Webpacker] Compiled all packs in /Users/luciacervantes/Desktop/AAD/Ruby/modelos-anidados-ruby/Bancos/public/packs
+[Webpacker] Hash: 32e57f147dbdcbbf0c82
+Version: webpack 4.42.1
+Time: 2930ms
+Built at: 04/19/2020 2:06:56 AM
+                                     Asset       Size       Chunks                         Chunk Names
+    js/application-bbe9c4a129ab949e0636.js    124 KiB  application  [emitted] [immutable]  application
+js/application-bbe9c4a129ab949e0636.js.map    139 KiB  application  [emitted] [dev]        application
+                             manifest.json  364 bytes               [emitted]              
+Entrypoint application = js/application-bbe9c4a129ab949e0636.js js/application-bbe9c4a129ab949e0636.js.map
+[./app/javascript/channels sync recursive _channel\.js$] ./app/javascript/channels sync _channel\.js$ 160 bytes {application} [built]
+[./app/javascript/channels/index.js] 211 bytes {application} [built]
+[./app/javascript/packs/application.js] 749 bytes {application} [built]
+[./node_modules/webpack/buildin/module.js] (webpack)/buildin/module.js 552 bytes {application} [built]
+    + 3 hidden modules
+
+Completed 200 OK in 6409ms (Views: 6401.1ms | ActiveRecord: 1.3ms | Allocations: 31368)
+
+
+Started GET "/banks/1" for ::1 at 2020-04-19 02:07:02 +0200
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (0.5ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:67:in `set_bank'
+  Rendering banks/show.html.erb within layouts/application
+  Rendered banks/show.html.erb within layouts/application (Duration: 4.9ms | Allocations: 240)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 91ms (Views: 65.9ms | ActiveRecord: 0.5ms | Allocations: 5356)
+
+
+Started GET "/banks/1/edit" for ::1 at 2020-04-19 02:07:04 +0200
+Processing by BanksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (1.7ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:67:in `set_bank'
+  Rendering banks/edit.html.erb within layouts/application
+  Rendered banks/_form.html.erb (Duration: 79.7ms | Allocations: 4792)
+  Rendered banks/edit.html.erb within layouts/application (Duration: 88.1ms | Allocations: 5192)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 133ms (Views: 117.2ms | ActiveRecord: 1.7ms | Allocations: 9872)
+
+
+Started GET "/banks" for ::1 at 2020-04-19 02:07:07 +0200
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.7ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  ↳ app/views/banks/index.html.erb:14
+  Rendered banks/index.html.erb within layouts/application (Duration: 21.0ms | Allocations: 1107)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 48ms (Views: 44.5ms | ActiveRecord: 0.7ms | Allocations: 5138)
+
+
+Started GET "/banks/2/edit" for ::1 at 2020-04-19 02:07:09 +0200
+Processing by BanksController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBank Load (0.3ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:67:in `set_bank'
+  Rendering banks/edit.html.erb within layouts/application
+  Rendered banks/_form.html.erb (Duration: 9.3ms | Allocations: 558)
+  Rendered banks/edit.html.erb within layouts/application (Duration: 10.3ms | Allocations: 674)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 99ms (Views: 93.8ms | ActiveRecord: 0.3ms | Allocations: 5198)
+
+
+Started GET "/banks" for ::1 at 2020-04-19 02:07:10 +0200
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.2ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  ↳ app/views/banks/index.html.erb:14
+  Rendered banks/index.html.erb within layouts/application (Duration: 8.0ms | Allocations: 1094)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 41ms (Views: 38.7ms | ActiveRecord: 0.2ms | Allocations: 5117)
+
+
+Started GET "/banks/3" for ::1 at 2020-04-19 02:07:11 +0200
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mBank Load (0.1ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:67:in `set_bank'
+  Rendering banks/show.html.erb within layouts/application
+  Rendered banks/show.html.erb within layouts/application (Duration: 0.2ms | Allocations: 78)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 37ms (Views: 35.2ms | ActiveRecord: 0.1ms | Allocations: 4603)
+
+
+Started GET "/banks" for ::1 at 2020-04-19 02:07:13 +0200
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (1.3ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  ↳ app/views/banks/index.html.erb:14
+  Rendered banks/index.html.erb within layouts/application (Duration: 6.0ms | Allocations: 1094)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 50ms (Views: 47.3ms | ActiveRecord: 1.3ms | Allocations: 5112)
+
+
+Started GET "/banks" for ::1 at 2020-04-19 02:08:04 +0200
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.1ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  ↳ app/views/banks/index.html.erb:14
+  Rendered banks/index.html.erb within layouts/application (Duration: 2.5ms | Allocations: 1349)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 20ms (Views: 18.0ms | ActiveRecord: 0.1ms | Allocations: 6310)
+
+
+Started GET "/banks" for ::1 at 2020-04-19 02:08:06 +0200
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.2ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  ↳ app/views/banks/index.html.erb:14
+  Rendered banks/index.html.erb within layouts/application (Duration: 2.1ms | Allocations: 1103)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 12ms (Views: 10.4ms | ActiveRecord: 0.2ms | Allocations: 5124)
+
+
+Started GET "/banks/1/edit" for ::1 at 2020-04-19 02:08:08 +0200
+Processing by BanksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (0.1ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:67:in `set_bank'
+  Rendering banks/edit.html.erb within layouts/application
+  Rendered banks/_form.html.erb (Duration: 4.6ms | Allocations: 853)
+  Rendered banks/edit.html.erb within layouts/application (Duration: 7.4ms | Allocations: 1244)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 38ms (Views: 36.1ms | ActiveRecord: 0.1ms | Allocations: 5902)
+
+
+Started GET "/banks/1" for ::1 at 2020-04-19 02:08:10 +0200
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (0.1ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:67:in `set_bank'
+  Rendering banks/show.html.erb within layouts/application
+  [1m[36mBankSubsidiary Exists? (1.7ms)[0m  [1m[34mSELECT 1 AS one FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? LIMIT ?[0m  [["bank_id", 1], ["LIMIT", 1]]
+  ↳ app/views/banks/show.html.erb:10
+  [1m[36mBankSubsidiary Load (1.1ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  ↳ app/views/banks/show.html.erb:12
+  Rendered banks/show.html.erb within layouts/application (Duration: 78.1ms | Allocations: 12249)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 89ms (Views: 80.1ms | ActiveRecord: 7.1ms | Allocations: 16826)
+
+
+Started GET "/bank_subsidiaries/2" for ::1 at 2020-04-19 02:08:16 +0200
+Processing by BankSubsidiariesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBankSubsidiary Load (0.2ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/bank_subsidiaries_controller.rb:67:in `set_bank_subsidiary'
+  Rendering bank_subsidiaries/show.html.erb within layouts/application
+  Rendered bank_subsidiaries/show.html.erb within layouts/application (Duration: 3.4ms | Allocations: 266)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 59ms (Views: 56.3ms | ActiveRecord: 0.2ms | Allocations: 5496)
+
+
+Started GET "/bank_subsidiaries" for ::1 at 2020-04-19 02:08:17 +0200
+Processing by BankSubsidiariesController#index as HTML
+  Rendering bank_subsidiaries/index.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (0.4ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries"[0m
+  ↳ app/views/bank_subsidiaries/index.html.erb:15
+  Rendered bank_subsidiaries/index.html.erb within layouts/application (Duration: 7.2ms | Allocations: 1908)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 47ms (Views: 45.2ms | ActiveRecord: 0.4ms | Allocations: 6067)
+
+
+Started GET "/bank_subsidiaries/1" for ::1 at 2020-04-19 02:08:23 +0200
+Processing by BankSubsidiariesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBankSubsidiary Load (0.4ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/bank_subsidiaries_controller.rb:67:in `set_bank_subsidiary'
+  Rendering bank_subsidiaries/show.html.erb within layouts/application
+  Rendered bank_subsidiaries/show.html.erb within layouts/application (Duration: 0.3ms | Allocations: 83)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 23ms (Views: 20.3ms | ActiveRecord: 0.4ms | Allocations: 4606)
+
+
+Started GET "/bank_subsidiaries" for ::1 at 2020-04-19 02:08:24 +0200
+Processing by BankSubsidiariesController#index as HTML
+  Rendering bank_subsidiaries/index.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (0.3ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries"[0m
+  ↳ app/views/bank_subsidiaries/index.html.erb:15
+  Rendered bank_subsidiaries/index.html.erb within layouts/application (Duration: 8.0ms | Allocations: 1623)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 31ms (Views: 29.2ms | ActiveRecord: 0.3ms | Allocations: 5639)
+
+
+Started GET "/banks/1" for ::1 at 2020-04-19 02:09:30 +0200
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (0.2ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:67:in `set_bank'
+  Rendering banks/show.html.erb within layouts/application
+  [1m[36mBankSubsidiary Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? LIMIT ?[0m  [["bank_id", 1], ["LIMIT", 1]]
+  ↳ app/views/banks/show.html.erb:10
+  [1m[36mBankSubsidiary Load (0.2ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  ↳ app/views/banks/show.html.erb:12
+  Rendered banks/show.html.erb within layouts/application (Duration: 31.6ms | Allocations: 1807)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 62ms (Views: 57.2ms | ActiveRecord: 0.8ms | Allocations: 7263)
+
+
+Started GET "/banks" for ::1 at 2020-04-19 02:09:33 +0200
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.3ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  ↳ app/views/banks/index.html.erb:14
+  Rendered banks/index.html.erb within layouts/application (Duration: 5.8ms | Allocations: 1344)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 20ms (Views: 17.8ms | ActiveRecord: 0.3ms | Allocations: 5505)
+
+
+Started GET "/banks/1/edit" for ::1 at 2020-04-19 02:09:36 +0200
+Processing by BanksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (0.1ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:67:in `set_bank'
+  Rendering banks/edit.html.erb within layouts/application
+  Rendered banks/_form.html.erb (Duration: 420.5ms | Allocations: 151857)
+  Rendered banks/edit.html.erb within layouts/application (Duration: 421.6ms | Allocations: 152196)
+Completed 500 Internal Server Error in 424ms (ActiveRecord: 0.1ms | Allocations: 153333)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `f' for #<#<Class:0x00007fd3e354b1e0>:0x00007fd3e32c5880>):
+    1: <div class="field">
+    2:   <%= f.label :name %><br>
+    3:   <%= f.text_field :name %>
+    4: </div>
+    5: 
+  
+app/views/banks/_form.html.erb:2
+app/views/banks/edit.html.erb:3
+Started GET "/banks/1/edit" for ::1 at 2020-04-19 02:10:05 +0200
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by BanksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (0.6ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:67:in `set_bank'
+  Rendering banks/edit.html.erb within layouts/application
+  Rendered banks/_form.html.erb (Duration: 301.2ms | Allocations: 147328)
+  Rendered banks/edit.html.erb within layouts/application (Duration: 301.7ms | Allocations: 147395)
+Completed 500 Internal Server Error in 315ms (ActiveRecord: 1.3ms | Allocations: 152346)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `f' for #<#<Class:0x00007fd3e434d798>:0x00007fd3e3f43a80>):
+    1: <div class="field">
+    2:   <%= f.label :name %><br>
+    3:   <%= f.text_field :name %>
+    4: </div>
+    5: 
+  
+app/views/banks/_form.html.erb:2
+app/views/banks/edit.html.erb:3
+Started GET "/banks/1/edit" for ::1 at 2020-04-19 02:10:50 +0200
+Processing by BanksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (0.3ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:67:in `set_bank'
+  Rendering banks/edit.html.erb within layouts/application
+  Rendered banks/_form.html.erb (Duration: 367.0ms | Allocations: 148478)
+  Rendered banks/edit.html.erb within layouts/application (Duration: 369.5ms | Allocations: 148817)
+Completed 500 Internal Server Error in 377ms (ActiveRecord: 0.3ms | Allocations: 150555)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `f' for #<#<Class:0x00007fd3e2c21088>:0x00007fd3e2c29940>):
+    24: 
+    25: 
+    26: <div class="field">
+    27:   <%= f.label :name %><br>
+    28:   <%= f.text_field :name %>
+    29: </div>
+    30: 
+  
+app/views/banks/_form.html.erb:27
+app/views/banks/edit.html.erb:3
+Started GET "/banks/1/edit" for ::1 at 2020-04-19 02:12:01 +0200
+Processing by BanksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (0.3ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:67:in `set_bank'
+  Rendering banks/edit.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (1.1ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  ↳ app/views/banks/_form.html.erb:21
+  Rendered banks/_form.html.erb (Duration: 46.1ms | Allocations: 11451)
+  Rendered banks/edit.html.erb within layouts/application (Duration: 48.3ms | Allocations: 11842)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 75ms (Views: 67.6ms | ActiveRecord: 2.4ms | Allocations: 17236)
+
+
+Started GET "/banks" for ::1 at 2020-04-19 02:12:50 +0200
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (1.0ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  ↳ app/views/banks/index.html.erb:14
+  Rendered banks/index.html.erb within layouts/application (Duration: 5.3ms | Allocations: 1360)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 58ms (Views: 55.5ms | ActiveRecord: 1.0ms | Allocations: 5529)
+
+
+Started GET "/banks/1/edit" for ::1 at 2020-04-19 02:12:53 +0200
+Processing by BanksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (0.3ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:67:in `set_bank'
+  Rendering banks/edit.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (0.7ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  ↳ app/views/banks/_form.html.erb:21
+  Rendered banks/_form.html.erb (Duration: 7.2ms | Allocations: 1852)
+  Rendered banks/edit.html.erb within layouts/application (Duration: 7.8ms | Allocations: 1969)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 34ms (Views: 30.7ms | ActiveRecord: 1.0ms | Allocations: 6490)
+
+
+Started PATCH "/banks/1" for ::1 at 2020-04-19 02:13:00 +0200
+Processing by BanksController#update as HTML
+  Parameters: {"authenticity_token"=>"Q4X9+vUyxLc6JG1O/U6UExEbNjC6LHrkcH2rE8zR4BbJ0oPfE3RiXH46ziwvaW5LW5TN06G9vH5MU2TeuRZFmw==", "bank"=>{"name"=>"Banco Scotiabank", "bank_subsidiaries_attributes"=>{"0"=>{"address"=>"Test", "id"=>"1"}, "1"=>{"address"=>"Av. Risso 5561 Of. 202 P.2 - Lince", "id"=>"2"}, "2"=>{"address"=>"Agustinas N° 1070 P. 6 Of. 52, Centro Cívico", "id"=>"3"}}}, "commit"=>"Update Bank", "id"=>"1"}
+  [1m[36mBank Load (0.3ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:67:in `set_bank'
+[31mUnpermitted parameter: :bank_subsidiaries_attributes[0m
+Redirected to http://localhost:3000/banks/1
+Completed 302 Found in 6ms (ActiveRecord: 0.3ms | Allocations: 1521)
+
+
+Started GET "/banks/1" for ::1 at 2020-04-19 02:13:00 +0200
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (0.3ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:67:in `set_bank'
+  Rendering banks/show.html.erb within layouts/application
+  [1m[36mBankSubsidiary Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? LIMIT ?[0m  [["bank_id", 1], ["LIMIT", 1]]
+  ↳ app/views/banks/show.html.erb:10
+  [1m[36mBankSubsidiary Load (0.2ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  ↳ app/views/banks/show.html.erb:12
+  Rendered banks/show.html.erb within layouts/application (Duration: 6.1ms | Allocations: 1930)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 19ms (Views: 15.0ms | ActiveRecord: 0.8ms | Allocations: 6612)
+
+
+Started GET "/banks" for ::1 at 2020-04-19 02:13:16 +0200
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.2ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  ↳ app/views/banks/index.html.erb:14
+  Rendered banks/index.html.erb within layouts/application (Duration: 5.3ms | Allocations: 1096)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 53ms (Views: 50.6ms | ActiveRecord: 0.2ms | Allocations: 5120)
+
+
+Started GET "/banks/1/edit" for ::1 at 2020-04-19 02:13:18 +0200
+Processing by BanksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (2.5ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:67:in `set_bank'
+  Rendering banks/edit.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (0.2ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  ↳ app/views/banks/_form.html.erb:21
+  Rendered banks/_form.html.erb (Duration: 8.0ms | Allocations: 1851)
+  Rendered banks/edit.html.erb within layouts/application (Duration: 8.9ms | Allocations: 1967)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 53ms (Views: 42.0ms | ActiveRecord: 2.7ms | Allocations: 6486)
+
+
+Started PATCH "/banks/1" for ::1 at 2020-04-19 02:14:56 +0200
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by BanksController#update as HTML
+  Parameters: {"authenticity_token"=>"If3wwr92/eykWAUIZc1Y9WngKjSdmSGMYO7CVGAtBHurqo7nWTBbB+BGpmq36qKtI2/R14YI5xZcwA2ZFeqh9g==", "bank"=>{"name"=>"Banco Scotiabank", "bank_subsidiaries_attributes"=>{"0"=>{"address"=>"Av. La Molina 562, Lima", "id"=>"1"}, "1"=>{"address"=>"Av. Risso 5561 Of. 202 P.2 - Lince", "id"=>"2"}, "2"=>{"address"=>"Test", "id"=>"3"}}}, "commit"=>"Update Bank", "id"=>"1"}
+  [1m[36mBank Load (0.8ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:67:in `set_bank'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/banks_controller.rb:44:in `block in update'
+  [1m[36mBankSubsidiary Load (0.4ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? AND "bank_subsidiaries"."id" IN (?, ?, ?)[0m  [["bank_id", 1], ["id", 1], ["id", 2], ["id", 3]]
+  ↳ app/controllers/banks_controller.rb:44:in `block in update'
+  [1m[36mBankSubsidiary Update (0.5ms)[0m  [1m[33mUPDATE "bank_subsidiaries" SET "address" = ?, "updated_at" = ? WHERE "bank_subsidiaries"."id" = ?[0m  [["address", "Test"], ["updated_at", "2020-04-19 00:14:56.881359"], ["id", 3]]
+  ↳ app/controllers/banks_controller.rb:44:in `block in update'
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/banks_controller.rb:44:in `block in update'
+Redirected to http://localhost:3000/banks/1
+Completed 302 Found in 36ms (ActiveRecord: 4.4ms | Allocations: 13744)
+
+
+Started GET "/banks/1" for ::1 at 2020-04-19 02:14:56 +0200
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (0.2ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:67:in `set_bank'
+  Rendering banks/show.html.erb within layouts/application
+  [1m[36mBankSubsidiary Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? LIMIT ?[0m  [["bank_id", 1], ["LIMIT", 1]]
+  ↳ app/views/banks/show.html.erb:10
+  [1m[36mBankSubsidiary Load (0.2ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  ↳ app/views/banks/show.html.erb:12
+  Rendered banks/show.html.erb within layouts/application (Duration: 6.0ms | Allocations: 1820)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 28ms (Views: 25.0ms | ActiveRecord: 1.0ms | Allocations: 6509)
+
+
+Started GET "/banks" for ::1 at 2020-04-19 02:15:00 +0200
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.5ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  ↳ app/views/banks/index.html.erb:14
+  Rendered banks/index.html.erb within layouts/application (Duration: 3.7ms | Allocations: 1110)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 72ms (Views: 62.6ms | ActiveRecord: 0.5ms | Allocations: 5133)
+
+
+Started GET "/banks/1/edit" for ::1 at 2020-04-19 02:15:02 +0200
+Processing by BanksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (0.2ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:67:in `set_bank'
+  Rendering banks/edit.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (0.2ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  ↳ app/views/banks/_form.html.erb:21
+  Rendered banks/_form.html.erb (Duration: 4.4ms | Allocations: 1852)
+  Rendered banks/edit.html.erb within layouts/application (Duration: 4.7ms | Allocations: 1968)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 66ms (Views: 64.7ms | ActiveRecord: 0.3ms | Allocations: 6496)
+
+
+Started GET "/banks" for ::1 at 2020-04-19 02:16:20 +0200
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.9ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  ↳ app/views/banks/index.html.erb:14
+  Rendered banks/index.html.erb within layouts/application (Duration: 15.3ms | Allocations: 3776)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 46ms (Views: 35.1ms | ActiveRecord: 2.8ms | Allocations: 8779)
+
+
+Started GET "/banks/1/edit" for ::1 at 2020-04-19 02:16:29 +0200
+Processing by BanksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (0.2ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:68:in `set_bank'
+  Rendering banks/edit.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (0.3ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  ↳ app/views/banks/_form.html.erb:21
+  Rendered banks/_form.html.erb (Duration: 13.8ms | Allocations: 2063)
+  Rendered banks/edit.html.erb within layouts/application (Duration: 14.1ms | Allocations: 2180)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 110ms (Views: 84.2ms | ActiveRecord: 1.1ms | Allocations: 11359)
+
+
+Started PATCH "/banks/1" for ::1 at 2020-04-19 02:16:37 +0200
+Processing by BanksController#update as HTML
+  Parameters: {"authenticity_token"=>"SD501JYuTpBbrK/O+ufN1CZhfYAj8j7uKYru/hgt8r7CaQrxcGjoex+yDKwowDeMbO6GYzhj+HQVpCEzbepXMw==", "bank"=>{"name"=>"Banco Scotiabank", "bank_subsidiaries_attributes"=>{"0"=>{"address"=>"Av. La Molina 562, Lima", "id"=>"1"}, "1"=>{"address"=>"Av. Risso 5561 Of. 202 P.2 - Lince", "id"=>"2"}, "2"=>{"address"=>"Test", "id"=>"3"}, "3"=>{"address"=>"nueva sucursal"}}}, "commit"=>"Update Bank", "id"=>"1"}
+  [1m[36mBank Load (0.2ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:68:in `set_bank'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/banks_controller.rb:45:in `block in update'
+  [1m[36mBankSubsidiary Load (0.5ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? AND "bank_subsidiaries"."id" IN (?, ?, ?)[0m  [["bank_id", 1], ["id", 1], ["id", 2], ["id", 3]]
+  ↳ app/controllers/banks_controller.rb:45:in `block in update'
+  [1m[36mBankSubsidiary Create (1.3ms)[0m  [1m[32mINSERT INTO "bank_subsidiaries" ("address", "bank_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "nueva sucursal"], ["bank_id", 1], ["created_at", "2020-04-19 00:16:37.587184"], ["updated_at", "2020-04-19 00:16:37.587184"]]
+  ↳ app/controllers/banks_controller.rb:45:in `block in update'
+  [1m[35m (3.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/banks_controller.rb:45:in `block in update'
+Redirected to http://localhost:3000/banks/1
+Completed 302 Found in 35ms (ActiveRecord: 6.0ms | Allocations: 5552)
+
+
+Started GET "/banks/1" for ::1 at 2020-04-19 02:16:37 +0200
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (0.2ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:68:in `set_bank'
+  Rendering banks/show.html.erb within layouts/application
+  [1m[36mBankSubsidiary Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? LIMIT ?[0m  [["bank_id", 1], ["LIMIT", 1]]
+  ↳ app/views/banks/show.html.erb:10
+  [1m[36mBankSubsidiary Load (0.2ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  ↳ app/views/banks/show.html.erb:12
+  Rendered banks/show.html.erb within layouts/application (Duration: 21.2ms | Allocations: 1701)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 37ms (Views: 33.5ms | ActiveRecord: 0.6ms | Allocations: 6246)
+
+
+Started GET "/bank_subsidiaries/9" for ::1 at 2020-04-19 02:17:00 +0200
+Processing by BankSubsidiariesController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mBankSubsidiary Load (0.4ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/bank_subsidiaries_controller.rb:67:in `set_bank_subsidiary'
+  Rendering bank_subsidiaries/show.html.erb within layouts/application
+  Rendered bank_subsidiaries/show.html.erb within layouts/application (Duration: 1.1ms | Allocations: 269)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 51ms (Views: 46.4ms | ActiveRecord: 0.4ms | Allocations: 5490)
+
+
+Started GET "/bank_subsidiaries" for ::1 at 2020-04-19 02:17:02 +0200
+Processing by BankSubsidiariesController#index as HTML
+  Rendering bank_subsidiaries/index.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (0.8ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries"[0m
+  ↳ app/views/bank_subsidiaries/index.html.erb:15
+  Rendered bank_subsidiaries/index.html.erb within layouts/application (Duration: 15.2ms | Allocations: 2034)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 52ms (Views: 48.4ms | ActiveRecord: 0.8ms | Allocations: 6196)
+
+
+Started GET "/bank_subsidiaries" for ::1 at 2020-04-19 02:17:58 +0200
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by BankSubsidiariesController#index as HTML
+  Rendering bank_subsidiaries/index.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (0.2ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries"[0m
+  ↳ app/views/bank_subsidiaries/index.html.erb:15
+  Rendered bank_subsidiaries/index.html.erb within layouts/application (Duration: 8.7ms | Allocations: 5112)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 30ms (Views: 24.8ms | ActiveRecord: 0.8ms | Allocations: 9933)
+
+
+Started GET "/bank_subsidiaries/9/edit" for ::1 at 2020-04-19 02:18:00 +0200
+Processing by BankSubsidiariesController#edit as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mBankSubsidiary Load (1.7ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/bank_subsidiaries_controller.rb:67:in `set_bank_subsidiary'
+  Rendering bank_subsidiaries/edit.html.erb within layouts/application
+  Rendered bank_subsidiaries/_form.html.erb (Duration: 7.5ms | Allocations: 1188)
+  Rendered bank_subsidiaries/edit.html.erb within layouts/application (Duration: 13.9ms | Allocations: 1577)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 63ms (Views: 56.6ms | ActiveRecord: 1.7ms | Allocations: 6344)
+
+
+Started GET "/bank_subsidiaries/new" for ::1 at 2020-04-19 02:18:03 +0200
+Processing by BankSubsidiariesController#new as HTML
+  Rendering bank_subsidiaries/new.html.erb within layouts/application
+  Rendered bank_subsidiaries/_form.html.erb (Duration: 4.4ms | Allocations: 756)
+  Rendered bank_subsidiaries/new.html.erb within layouts/application (Duration: 5.4ms | Allocations: 963)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 30ms (Views: 26.2ms | ActiveRecord: 0.0ms | Allocations: 5129)
+
+
+Started GET "/bank_subsidiaries/9" for ::1 at 2020-04-19 02:18:07 +0200
+Processing by BankSubsidiariesController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mBankSubsidiary Load (0.2ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/bank_subsidiaries_controller.rb:67:in `set_bank_subsidiary'
+  Rendering bank_subsidiaries/show.html.erb within layouts/application
+  Rendered bank_subsidiaries/show.html.erb within layouts/application (Duration: 0.3ms | Allocations: 84)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 104ms (Views: 16.0ms | ActiveRecord: 0.2ms | Allocations: 4616)
+
+
+Started GET "/banks/1" for ::1 at 2020-04-19 02:18:08 +0200
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (0.2ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:68:in `set_bank'
+  Rendering banks/show.html.erb within layouts/application
+  [1m[36mBankSubsidiary Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? LIMIT ?[0m  [["bank_id", 1], ["LIMIT", 1]]
+  ↳ app/views/banks/show.html.erb:10
+  [1m[36mBankSubsidiary Load (0.8ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  ↳ app/views/banks/show.html.erb:12
+  Rendered banks/show.html.erb within layouts/application (Duration: 21.0ms | Allocations: 2897)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 58ms (Views: 33.4ms | ActiveRecord: 1.9ms | Allocations: 10986)
+
+
+Started GET "/banks" for ::1 at 2020-04-19 02:18:11 +0200
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.3ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  ↳ app/views/banks/index.html.erb:14
+  Rendered banks/index.html.erb within layouts/application (Duration: 3.1ms | Allocations: 1160)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 39ms (Views: 37.8ms | ActiveRecord: 0.3ms | Allocations: 5180)
+
+
+Started GET "/banks/1/edit" for ::1 at 2020-04-19 02:18:13 +0200
+Processing by BanksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (0.2ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:68:in `set_bank'
+  Rendering banks/edit.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (0.3ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  ↳ app/views/banks/_form.html.erb:21
+  Rendered banks/_form.html.erb (Duration: 8.7ms | Allocations: 2088)
+  Rendered banks/edit.html.erb within layouts/application (Duration: 9.1ms | Allocations: 2204)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 30ms (Views: 27.4ms | ActiveRecord: 0.5ms | Allocations: 6890)
+
+
+Started PATCH "/banks/1" for ::1 at 2020-04-19 02:18:19 +0200
+Processing by BanksController#update as HTML
+  Parameters: {"authenticity_token"=>"pmz106vwwQbtytfqPyNkTZar+5Y3Hx3cXf76omglFbQsO4v2TbZn7anUdIjtBJ4V3CQAdSyO20Zh0DVvHeKwOQ==", "bank"=>{"name"=>"Banco Scotiabank", "bank_subsidiaries_attributes"=>{"0"=>{"address"=>"Av. La Molina 562, Lima", "id"=>"1"}, "1"=>{"address"=>"Av. Risso 5561 Of. 202 P.2 - Lince", "id"=>"2"}, "2"=>{"address"=>"Test", "id"=>"3"}, "3"=>{"address"=>"nueva sucursal", "id"=>"9"}, "4"=>{"address"=>"test sucursal"}}}, "commit"=>"Update Bank", "id"=>"1"}
+  [1m[36mBank Load (0.2ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:68:in `set_bank'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/banks_controller.rb:45:in `block in update'
+  [1m[36mBankSubsidiary Load (0.4ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? AND "bank_subsidiaries"."id" IN (?, ?, ?, ?)[0m  [["bank_id", 1], ["id", 1], ["id", 2], ["id", 3], ["id", 9]]
+  ↳ app/controllers/banks_controller.rb:45:in `block in update'
+  [1m[36mBankSubsidiary Create (0.7ms)[0m  [1m[32mINSERT INTO "bank_subsidiaries" ("address", "bank_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "test sucursal"], ["bank_id", 1], ["created_at", "2020-04-19 00:18:19.336071"], ["updated_at", "2020-04-19 00:18:19.336071"]]
+  ↳ app/controllers/banks_controller.rb:45:in `block in update'
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/banks_controller.rb:45:in `block in update'
+Redirected to http://localhost:3000/banks/1
+Completed 302 Found in 31ms (ActiveRecord: 2.5ms | Allocations: 5730)
+
+
+Started GET "/banks/1" for ::1 at 2020-04-19 02:18:19 +0200
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (0.1ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:68:in `set_bank'
+  Rendering banks/show.html.erb within layouts/application
+  [1m[36mBankSubsidiary Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? LIMIT ?[0m  [["bank_id", 1], ["LIMIT", 1]]
+  ↳ app/views/banks/show.html.erb:10
+  [1m[36mBankSubsidiary Load (0.1ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  ↳ app/views/banks/show.html.erb:12
+  Rendered banks/show.html.erb within layouts/application (Duration: 2.2ms | Allocations: 1624)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 9ms (Views: 7.0ms | ActiveRecord: 0.4ms | Allocations: 6157)
+
+
+Started GET "/bank_subsidiaries/10" for ::1 at 2020-04-19 02:18:21 +0200
+Processing by BankSubsidiariesController#show as HTML
+  Parameters: {"id"=>"10"}
+  [1m[36mBankSubsidiary Load (0.2ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/bank_subsidiaries_controller.rb:67:in `set_bank_subsidiary'
+  Rendering bank_subsidiaries/show.html.erb within layouts/application
+  Rendered bank_subsidiaries/show.html.erb within layouts/application (Duration: 0.4ms | Allocations: 82)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 20ms (Views: 18.4ms | ActiveRecord: 0.2ms | Allocations: 4602)
+
+
+Started GET "/banks/1" for ::1 at 2020-04-19 02:19:19 +0200
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (0.2ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:68:in `set_bank'
+  Rendering banks/show.html.erb within layouts/application
+  [1m[36mBankSubsidiary Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? LIMIT ?[0m  [["bank_id", 1], ["LIMIT", 1]]
+  ↳ app/views/banks/show.html.erb:10
+  [1m[36mBankSubsidiary Load (0.1ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  ↳ app/views/banks/show.html.erb:12
+  Rendered banks/show.html.erb within layouts/application (Duration: 3.8ms | Allocations: 1622)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 25ms (Views: 21.9ms | ActiveRecord: 0.7ms | Allocations: 6142)
+
+
+Started GET "/banks/1" for ::1 at 2020-04-19 02:22:09 +0200
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (0.3ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:69:in `set_bank'
+  Rendering banks/show.html.erb within layouts/application
+  [1m[36mBankSubsidiary Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? LIMIT ?[0m  [["bank_id", 1], ["LIMIT", 1]]
+  ↳ app/views/banks/show.html.erb:10
+  [1m[36mBankSubsidiary Load (0.4ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  ↳ app/views/banks/show.html.erb:12
+  Rendered banks/show.html.erb within layouts/application (Duration: 49.2ms | Allocations: 8511)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 104ms (Views: 74.0ms | ActiveRecord: 4.6ms | Allocations: 18302)
+
+
+Started GET "/banks" for ::1 at 2020-04-19 02:22:12 +0200
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.2ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  ↳ app/views/banks/index.html.erb:14
+  Rendered banks/index.html.erb within layouts/application (Duration: 2.6ms | Allocations: 1408)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 39ms (Views: 37.7ms | ActiveRecord: 0.2ms | Allocations: 5582)
+
+
+Started GET "/banks/2/edit" for ::1 at 2020-04-19 02:22:13 +0200
+Processing by BanksController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBank Load (1.9ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:69:in `set_bank'
+  Rendering banks/edit.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (0.2ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 2]]
+  ↳ app/views/banks/_form.html.erb:21
+  Rendered banks/_form.html.erb (Duration: 30.1ms | Allocations: 2322)
+  Rendered banks/edit.html.erb within layouts/application (Duration: 33.4ms | Allocations: 2713)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 65ms (Views: 58.8ms | ActiveRecord: 2.2ms | Allocations: 7539)
+
+
+Started GET "/banks/1/edit" for ::1 at 2020-04-19 02:22:23 +0200
+Processing by BanksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (0.2ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:69:in `set_bank'
+  Rendering banks/edit.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (0.3ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  ↳ app/views/banks/_form.html.erb:21
+  Rendered banks/_form.html.erb (Duration: 7.3ms | Allocations: 2951)
+  Rendered banks/edit.html.erb within layouts/application (Duration: 7.8ms | Allocations: 3067)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 41ms (Views: 36.9ms | ActiveRecord: 0.4ms | Allocations: 7755)
+
+
+Started PATCH "/banks/1" for ::1 at 2020-04-19 02:22:37 +0200
+Processing by BanksController#update as HTML
+  Parameters: {"authenticity_token"=>"15GD3FlsOhYMgs17KmIJxwcqbu7pcPTL3GloUAiAAwddxv35vyqc/Uicbhn4RfOfTaWVDfLhMlHgR6edfUemig==", "bank"=>{"name"=>"Banco Scotiabank", "bank_subsidiaries_attributes"=>{"0"=>{"address"=>"Av. La Molina 562, Lima", "_destroy"=>"0", "id"=>"1"}, "1"=>{"address"=>"Av. Risso 5561 Of. 202 P.2 - Lince", "_destroy"=>"0", "id"=>"2"}, "2"=>{"address"=>"Test", "_destroy"=>"0", "id"=>"3"}, "3"=>{"address"=>"nueva sucursal", "_destroy"=>"1", "id"=>"9"}, "4"=>{"address"=>"test sucursal", "_destroy"=>"1", "id"=>"10"}, "5"=>{"address"=>"", "_destroy"=>"0"}}}, "commit"=>"Update Bank", "id"=>"1"}
+  [1m[36mBank Load (0.2ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:69:in `set_bank'
+[31mUnpermitted parameter: :_destroy[0m
+[31mUnpermitted parameter: :_destroy[0m
+[31mUnpermitted parameter: :_destroy[0m
+[31mUnpermitted parameter: :_destroy[0m
+[31mUnpermitted parameter: :_destroy[0m
+[31mUnpermitted parameter: :_destroy[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/banks_controller.rb:46:in `block in update'
+  [1m[36mBankSubsidiary Load (0.4ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? AND "bank_subsidiaries"."id" IN (?, ?, ?, ?, ?)[0m  [["bank_id", 1], ["id", 1], ["id", 2], ["id", 3], ["id", 9], ["id", 10]]
+  ↳ app/controllers/banks_controller.rb:46:in `block in update'
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/banks_controller.rb:46:in `block in update'
+Redirected to http://localhost:3000/banks/1
+Completed 302 Found in 44ms (ActiveRecord: 0.8ms | Allocations: 4829)
+
+
+Started GET "/banks/1" for ::1 at 2020-04-19 02:22:38 +0200
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (0.1ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:69:in `set_bank'
+  Rendering banks/show.html.erb within layouts/application
+  [1m[36mBankSubsidiary Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? LIMIT ?[0m  [["bank_id", 1], ["LIMIT", 1]]
+  ↳ app/views/banks/show.html.erb:10
+  [1m[36mBankSubsidiary Load (0.2ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  ↳ app/views/banks/show.html.erb:12
+  Rendered banks/show.html.erb within layouts/application (Duration: 6.4ms | Allocations: 1627)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 85ms (Views: 83.1ms | ActiveRecord: 0.7ms | Allocations: 6163)
+
+
+Started GET "/banks" for ::1 at 2020-04-19 02:22:41 +0200
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.2ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  ↳ app/views/banks/index.html.erb:14
+  Rendered banks/index.html.erb within layouts/application (Duration: 1.8ms | Allocations: 1095)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 35ms (Views: 34.3ms | ActiveRecord: 0.2ms | Allocations: 5119)
+
+
+Started GET "/banks/1/edit" for ::1 at 2020-04-19 02:22:42 +0200
+Processing by BanksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (0.2ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:69:in `set_bank'
+  Rendering banks/edit.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (0.2ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  ↳ app/views/banks/_form.html.erb:21
+  Rendered banks/_form.html.erb (Duration: 6.8ms | Allocations: 2950)
+  Rendered banks/edit.html.erb within layouts/application (Duration: 7.3ms | Allocations: 3066)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 36ms (Views: 32.9ms | ActiveRecord: 0.5ms | Allocations: 7754)
+
+
+Started GET "/banks/1/edit" for ::1 at 2020-04-19 02:23:24 +0200
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by BanksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (0.1ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:73:in `set_bank'
+  Rendering banks/edit.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (0.2ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  ↳ app/views/banks/_form.html.erb:21
+  Rendered banks/_form.html.erb (Duration: 4.6ms | Allocations: 3181)
+  Rendered banks/edit.html.erb within layouts/application (Duration: 5.0ms | Allocations: 3300)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 37ms (Views: 19.1ms | ActiveRecord: 2.1ms | Allocations: 16101)
+
+
+Started PATCH "/banks/1" for ::1 at 2020-04-19 02:23:31 +0200
+Processing by BanksController#update as HTML
+  Parameters: {"authenticity_token"=>"9wWoy+mU2I0wtyqgvZ9LMM0d1NNCSJrNktmphaSJP9rwCg2MUCk6b74Y8I/+01iANRARPNDPe8v1ycvlXrQqGQ==", "bank"=>{"name"=>"Banco Scotiabank", "bank_subsidiaries_attributes"=>{"0"=>{"address"=>"Av. La Molina 562, Lima", "_destroy"=>"0", "id"=>"1"}, "1"=>{"address"=>"Av. Risso 5561 Of. 202 P.2 - Lince", "_destroy"=>"0", "id"=>"2"}, "2"=>{"address"=>"Test", "_destroy"=>"0", "id"=>"3"}, "3"=>{"address"=>"nueva sucursal", "_destroy"=>"1", "id"=>"9"}, "4"=>{"address"=>"test sucursal", "_destroy"=>"1", "id"=>"10"}, "5"=>{"address"=>"", "_destroy"=>"0"}}}, "commit"=>"Update Bank", "id"=>"1"}
+  [1m[36mBank Load (0.2ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:73:in `set_bank'
+[31mUnpermitted parameter: :_destroy[0m
+[31mUnpermitted parameter: :_destroy[0m
+[31mUnpermitted parameter: :_destroy[0m
+[31mUnpermitted parameter: :_destroy[0m
+[31mUnpermitted parameter: :_destroy[0m
+[31mUnpermitted parameter: :_destroy[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/banks_controller.rb:46:in `block in update'
+  [1m[36mBankSubsidiary Load (0.5ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? AND "bank_subsidiaries"."id" IN (?, ?, ?, ?, ?)[0m  [["bank_id", 1], ["id", 1], ["id", 2], ["id", 3], ["id", 9], ["id", 10]]
+  ↳ app/controllers/banks_controller.rb:46:in `block in update'
+  [1m[35m (0.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/banks_controller.rb:46:in `block in update'
+Redirected to http://localhost:3000/banks/1
+Completed 302 Found in 20ms (ActiveRecord: 1.1ms | Allocations: 4802)
+
+
+Started GET "/banks/1" for ::1 at 2020-04-19 02:23:31 +0200
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (0.1ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:73:in `set_bank'
+  Rendering banks/show.html.erb within layouts/application
+  [1m[36mBankSubsidiary Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? LIMIT ?[0m  [["bank_id", 1], ["LIMIT", 1]]
+  ↳ app/views/banks/show.html.erb:10
+  [1m[36mBankSubsidiary Load (0.2ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  ↳ app/views/banks/show.html.erb:12
+  Rendered banks/show.html.erb within layouts/application (Duration: 5.7ms | Allocations: 1751)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 21ms (Views: 19.1ms | ActiveRecord: 0.7ms | Allocations: 6282)
+
+
+Started GET "/banks" for ::1 at 2020-04-19 02:23:34 +0200
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.3ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  ↳ app/views/banks/index.html.erb:14
+  Rendered banks/index.html.erb within layouts/application (Duration: 2.6ms | Allocations: 1109)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 34ms (Views: 33.1ms | ActiveRecord: 0.3ms | Allocations: 5129)
+
+
+Started GET "/banks/1/edit" for ::1 at 2020-04-19 02:23:36 +0200
+Processing by BanksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (0.3ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:73:in `set_bank'
+  Rendering banks/edit.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (0.2ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  ↳ app/views/banks/_form.html.erb:21
+  Rendered banks/_form.html.erb (Duration: 7.6ms | Allocations: 2950)
+  Rendered banks/edit.html.erb within layouts/application (Duration: 8.0ms | Allocations: 3066)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 37ms (Views: 31.9ms | ActiveRecord: 0.6ms | Allocations: 7748)
+
+
+Started PATCH "/banks/1" for ::1 at 2020-04-19 02:23:42 +0200
+Processing by BanksController#update as HTML
+  Parameters: {"authenticity_token"=>"hwTuDtl5ZijTfWDXx/SEYfj43ev75KtlXMxQqFe4IJsNU5ArPz/Aw5djw7UV0345sncmCOB1bf9g4p9lIn+FFg==", "bank"=>{"name"=>"Banco Scotiabank", "bank_subsidiaries_attributes"=>{"0"=>{"address"=>"Av. La Molina 562, Lima", "_destroy"=>"0", "id"=>"1"}, "1"=>{"address"=>"Av. Risso 5561 Of. 202 P.2 - Lince", "_destroy"=>"0", "id"=>"2"}, "2"=>{"address"=>"Test", "_destroy"=>"0", "id"=>"3"}, "3"=>{"address"=>"nueva sucursal", "_destroy"=>"0", "id"=>"9"}, "4"=>{"address"=>"test sucursal", "_destroy"=>"0", "id"=>"10"}, "5"=>{"address"=>"test sucursal", "_destroy"=>"1"}}}, "commit"=>"Update Bank", "id"=>"1"}
+  [1m[36mBank Load (0.2ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:73:in `set_bank'
+[31mUnpermitted parameter: :_destroy[0m
+[31mUnpermitted parameter: :_destroy[0m
+[31mUnpermitted parameter: :_destroy[0m
+[31mUnpermitted parameter: :_destroy[0m
+[31mUnpermitted parameter: :_destroy[0m
+[31mUnpermitted parameter: :_destroy[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/banks_controller.rb:46:in `block in update'
+  [1m[36mBankSubsidiary Load (0.5ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? AND "bank_subsidiaries"."id" IN (?, ?, ?, ?, ?)[0m  [["bank_id", 1], ["id", 1], ["id", 2], ["id", 3], ["id", 9], ["id", 10]]
+  ↳ app/controllers/banks_controller.rb:46:in `block in update'
+  [1m[36mBankSubsidiary Create (1.0ms)[0m  [1m[32mINSERT INTO "bank_subsidiaries" ("address", "bank_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "test sucursal"], ["bank_id", 1], ["created_at", "2020-04-19 00:23:42.101915"], ["updated_at", "2020-04-19 00:23:42.101915"]]
+  ↳ app/controllers/banks_controller.rb:46:in `block in update'
+  [1m[35m (2.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/banks_controller.rb:46:in `block in update'
+Redirected to http://localhost:3000/banks/1
+Completed 302 Found in 25ms (ActiveRecord: 4.1ms | Allocations: 6042)
+
+
+Started GET "/banks/1" for ::1 at 2020-04-19 02:23:42 +0200
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (0.2ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:73:in `set_bank'
+  Rendering banks/show.html.erb within layouts/application
+  [1m[36mBankSubsidiary Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? LIMIT ?[0m  [["bank_id", 1], ["LIMIT", 1]]
+  ↳ app/views/banks/show.html.erb:10
+  [1m[36mBankSubsidiary Load (0.1ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  ↳ app/views/banks/show.html.erb:12
+  Rendered banks/show.html.erb within layouts/application (Duration: 8.2ms | Allocations: 1672)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 17ms (Views: 14.0ms | ActiveRecord: 0.7ms | Allocations: 6210)
+
+
+Started GET "/banks" for ::1 at 2020-04-19 02:23:46 +0200
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (5.4ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  ↳ app/views/banks/index.html.erb:14
+  Rendered banks/index.html.erb within layouts/application (Duration: 8.6ms | Allocations: 1094)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 55ms (Views: 25.2ms | ActiveRecord: 5.4ms | Allocations: 5120)
+
+
+Started GET "/banks/1/edit" for ::1 at 2020-04-19 02:23:47 +0200
+Processing by BanksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (0.3ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:73:in `set_bank'
+  Rendering banks/edit.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (0.2ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  ↳ app/views/banks/_form.html.erb:21
+  Rendered banks/_form.html.erb (Duration: 12.0ms | Allocations: 3256)
+  Rendered banks/edit.html.erb within layouts/application (Duration: 12.3ms | Allocations: 3372)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 35ms (Views: 31.1ms | ActiveRecord: 0.5ms | Allocations: 8061)
+
+
+Started PATCH "/banks/1" for ::1 at 2020-04-19 02:23:51 +0200
+Processing by BanksController#update as HTML
+  Parameters: {"authenticity_token"=>"/N9bS/ThkGx1uvc6c3q0VCYfm7hHWZwcVeWuMUbtIgl2iCVuEqc2hzGkVFihXU4MbJBgW1zIWoZpy2H8MyqHhA==", "bank"=>{"name"=>"Banco Scotiabank", "bank_subsidiaries_attributes"=>{"0"=>{"address"=>"Av. La Molina 562, Lima", "_destroy"=>"0", "id"=>"1"}, "1"=>{"address"=>"Av. Risso 5561 Of. 202 P.2 - Lince", "_destroy"=>"0", "id"=>"2"}, "2"=>{"address"=>"Test", "_destroy"=>"0", "id"=>"3"}, "3"=>{"address"=>"nueva sucursal", "_destroy"=>"0", "id"=>"9"}, "4"=>{"address"=>"test sucursal", "_destroy"=>"0", "id"=>"10"}, "5"=>{"address"=>"test sucursal", "_destroy"=>"1", "id"=>"11"}, "6"=>{"address"=>"", "_destroy"=>"0"}}}, "commit"=>"Update Bank", "id"=>"1"}
+  [1m[36mBank Load (0.3ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:73:in `set_bank'
+[31mUnpermitted parameter: :_destroy[0m
+[31mUnpermitted parameter: :_destroy[0m
+[31mUnpermitted parameter: :_destroy[0m
+[31mUnpermitted parameter: :_destroy[0m
+[31mUnpermitted parameter: :_destroy[0m
+[31mUnpermitted parameter: :_destroy[0m
+[31mUnpermitted parameter: :_destroy[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/banks_controller.rb:46:in `block in update'
+  [1m[36mBankSubsidiary Load (0.8ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? AND "bank_subsidiaries"."id" IN (?, ?, ?, ?, ?, ?)[0m  [["bank_id", 1], ["id", 1], ["id", 2], ["id", 3], ["id", 9], ["id", 10], ["id", 11]]
+  ↳ app/controllers/banks_controller.rb:46:in `block in update'
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/banks_controller.rb:46:in `block in update'
+Redirected to http://localhost:3000/banks/1
+Completed 302 Found in 21ms (ActiveRecord: 1.2ms | Allocations: 4942)
+
+
+Started GET "/banks/1" for ::1 at 2020-04-19 02:23:51 +0200
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (0.1ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:73:in `set_bank'
+  Rendering banks/show.html.erb within layouts/application
+  [1m[36mBankSubsidiary Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? LIMIT ?[0m  [["bank_id", 1], ["LIMIT", 1]]
+  ↳ app/views/banks/show.html.erb:10
+  [1m[36mBankSubsidiary Load (0.2ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  ↳ app/views/banks/show.html.erb:12
+  Rendered banks/show.html.erb within layouts/application (Duration: 2.8ms | Allocations: 1672)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 11ms (Views: 9.3ms | ActiveRecord: 0.5ms | Allocations: 6212)
+
+
+Started GET "/banks/1" for ::1 at 2020-04-19 02:24:55 +0200
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (0.3ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:73:in `set_bank'
+  Rendering banks/show.html.erb within layouts/application
+  [1m[36mBankSubsidiary Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? LIMIT ?[0m  [["bank_id", 1], ["LIMIT", 1]]
+  ↳ app/views/banks/show.html.erb:10
+  [1m[36mBankSubsidiary Load (0.3ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  ↳ app/views/banks/show.html.erb:12
+  Rendered banks/show.html.erb within layouts/application (Duration: 8.3ms | Allocations: 1944)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 34ms (Views: 29.4ms | ActiveRecord: 1.1ms | Allocations: 7412)
+
+
+Started GET "/banks" for ::1 at 2020-04-19 02:24:57 +0200
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.2ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  ↳ app/views/banks/index.html.erb:14
+  Rendered banks/index.html.erb within layouts/application (Duration: 9.4ms | Allocations: 1344)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 29ms (Views: 25.6ms | ActiveRecord: 0.2ms | Allocations: 5509)
+
+
+Started GET "/banks" for ::1 at 2020-04-19 02:24:58 +0200
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.1ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  ↳ app/views/banks/index.html.erb:14
+  Rendered banks/index.html.erb within layouts/application (Duration: 1.6ms | Allocations: 1094)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 9ms (Views: 7.7ms | ActiveRecord: 0.1ms | Allocations: 5113)
+
+
+Started GET "/banks/new" for ::1 at 2020-04-19 02:25:39 +0200
+Processing by BanksController#new as HTML
+  Rendering banks/new.html.erb within layouts/application
+  Rendered banks/_form.html.erb (Duration: 10.5ms | Allocations: 1184)
+  Rendered banks/new.html.erb within layouts/application (Duration: 12.0ms | Allocations: 1530)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 66ms (Views: 42.6ms | ActiveRecord: 0.0ms | Allocations: 9067)
+
+
+Started POST "/banks" for ::1 at 2020-04-19 02:25:53 +0200
+Processing by BanksController#create as HTML
+  Parameters: {"authenticity_token"=>"Eq+G6n0w8g6Btafd1Up8+JEzblsck6VieJdhQ66m4W5E/ePn33mkQftN1XX0aPGR/ehigzrSMFxdSD3J9lh9mg==", "bank"=>{"name"=>"test", "bank_subsidiaries_attributes"=>{"0"=>{"address"=>"", "_destroy"=>"0"}}}, "commit"=>"Create Bank"}
+[31mUnpermitted parameter: :_destroy[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/banks_controller.rb:32:in `block in create'
+  [1m[36mBank Create (0.9ms)[0m  [1m[32mINSERT INTO "banks" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "test"], ["created_at", "2020-04-19 00:25:53.340651"], ["updated_at", "2020-04-19 00:25:53.340651"]]
+  ↳ app/controllers/banks_controller.rb:32:in `block in create'
+  [1m[35m (3.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/banks_controller.rb:32:in `block in create'
+Redirected to http://localhost:3000/banks/5
+Completed 302 Found in 13ms (ActiveRecord: 4.2ms | Allocations: 2790)
+
+
+Started GET "/banks/5" for ::1 at 2020-04-19 02:25:53 +0200
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mBank Load (0.3ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:73:in `set_bank'
+  Rendering banks/show.html.erb within layouts/application
+  [1m[36mBankSubsidiary Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? LIMIT ?[0m  [["bank_id", 5], ["LIMIT", 1]]
+  ↳ app/views/banks/show.html.erb:10
+  Rendered banks/show.html.erb within layouts/application (Duration: 3.1ms | Allocations: 798)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 13ms (Views: 10.0ms | ActiveRecord: 0.7ms | Allocations: 5334)
+
+
+Started GET "/banks/5/edit" for ::1 at 2020-04-19 02:25:55 +0200
+Processing by BanksController#edit as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mBank Load (0.2ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:73:in `set_bank'
+  Rendering banks/edit.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (0.1ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 5]]
+  ↳ app/views/banks/_form.html.erb:21
+  Rendered banks/_form.html.erb (Duration: 7.1ms | Allocations: 1425)
+  Rendered banks/edit.html.erb within layouts/application (Duration: 10.4ms | Allocations: 1681)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 47ms (Views: 43.2ms | ActiveRecord: 0.3ms | Allocations: 6512)
+
+
+Started PATCH "/banks/5" for ::1 at 2020-04-19 02:25:59 +0200
+Processing by BanksController#update as HTML
+  Parameters: {"authenticity_token"=>"MsXdozuxTWomrt1dFmgFW8zhPCAB9Eo1aMh9f2Jylu4BAmzOyKRlH26yzFga+6zIxcFzUxcT0eFwXz3yYRf22Q==", "bank"=>{"name"=>"test", "bank_subsidiaries_attributes"=>{"0"=>{"address"=>"test", "_destroy"=>"0"}}}, "commit"=>"Update Bank", "id"=>"5"}
+  [1m[36mBank Load (0.2ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:73:in `set_bank'
+[31mUnpermitted parameter: :_destroy[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/banks_controller.rb:46:in `block in update'
+  [1m[36mBankSubsidiary Create (3.6ms)[0m  [1m[32mINSERT INTO "bank_subsidiaries" ("address", "bank_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "test"], ["bank_id", 5], ["created_at", "2020-04-19 00:25:59.715814"], ["updated_at", "2020-04-19 00:25:59.715814"]]
+  ↳ app/controllers/banks_controller.rb:46:in `block in update'
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/banks_controller.rb:46:in `block in update'
+Redirected to http://localhost:3000/banks/5
+Completed 302 Found in 17ms (ActiveRecord: 5.3ms | Allocations: 4241)
+
+
+Started GET "/banks/5" for ::1 at 2020-04-19 02:25:59 +0200
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mBank Load (0.2ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:73:in `set_bank'
+  Rendering banks/show.html.erb within layouts/application
+  [1m[36mBankSubsidiary Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? LIMIT ?[0m  [["bank_id", 5], ["LIMIT", 1]]
+  ↳ app/views/banks/show.html.erb:10
+  [1m[36mBankSubsidiary Load (0.2ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 5]]
+  ↳ app/views/banks/show.html.erb:12
+  Rendered banks/show.html.erb within layouts/application (Duration: 4.3ms | Allocations: 1433)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 29ms (Views: 26.6ms | ActiveRecord: 0.7ms | Allocations: 5968)
+
+
+Started GET "/bank_subsidiaries/12" for ::1 at 2020-04-19 02:26:01 +0200
+Processing by BankSubsidiariesController#show as HTML
+  Parameters: {"id"=>"12"}
+  [1m[36mBankSubsidiary Load (0.6ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/bank_subsidiaries_controller.rb:67:in `set_bank_subsidiary'
+  Rendering bank_subsidiaries/show.html.erb within layouts/application
+  Rendered bank_subsidiaries/show.html.erb within layouts/application (Duration: 7.3ms | Allocations: 261)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 44ms (Views: 39.0ms | ActiveRecord: 0.6ms | Allocations: 5494)
+
+
+Started GET "/bank_subsidiaries/12" for ::1 at 2020-04-19 02:26:04 +0200
+Processing by BankSubsidiariesController#show as HTML
+  Parameters: {"id"=>"12"}
+  [1m[36mBankSubsidiary Load (0.1ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/bank_subsidiaries_controller.rb:67:in `set_bank_subsidiary'
+  Rendering bank_subsidiaries/show.html.erb within layouts/application
+  Rendered bank_subsidiaries/show.html.erb within layouts/application (Duration: 0.2ms | Allocations: 82)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 46ms (Views: 44.6ms | ActiveRecord: 0.1ms | Allocations: 4602)
+
+
+Started PATCH "/banks/5" for ::1 at 2020-04-19 02:26:56 +0200
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by BanksController#update as HTML
+  Parameters: {"authenticity_token"=>"PKxNBkx5VCweIIxeLmNH0ZX4B75RORa3Rg8yY4pr+MY7o+hB9cS2zpCPVnFtL1RhbfXCUcO+97EhH1ADcFbtBQ==", "bank"=>{"name"=>"test", "bank_subsidiaries_attributes"=>{"0"=>{"address"=>"", "_destroy"=>"0"}}}, "commit"=>"Update Bank", "id"=>"5"}
+  [1m[36mBank Load (0.2ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:73:in `set_bank'
+[31mUnpermitted parameter: :_destroy[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/banks_controller.rb:46:in `block in update'
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/banks_controller.rb:46:in `block in update'
+  Rendering banks/edit.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (0.3ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 5]]
+  ↳ app/views/banks/_form.html.erb:21
+  Rendered banks/_form.html.erb (Duration: 5.5ms | Allocations: 2816)
+  Rendered banks/edit.html.erb within layouts/application (Duration: 6.2ms | Allocations: 3072)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 65ms (Views: 36.2ms | ActiveRecord: 1.9ms | Allocations: 20443)
+
+
+Started GET "/banks" for ::1 at 2020-04-19 02:28:40 +0200
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.3ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  ↳ app/views/banks/index.html.erb:14
+  Rendered banks/index.html.erb within layouts/application (Duration: 14.8ms | Allocations: 3931)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 42ms (Views: 34.2ms | ActiveRecord: 1.3ms | Allocations: 9021)
+
+
+Started GET "/banks" for ::1 at 2020-04-19 02:28:46 +0200
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.3ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  ↳ app/views/banks/index.html.erb:14
+  Rendered banks/index.html.erb within layouts/application (Duration: 4.8ms | Allocations: 1472)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 23ms (Views: 20.5ms | ActiveRecord: 0.3ms | Allocations: 6455)
+
+
+Started GET "/" for ::1 at 2020-04-19 02:28:48 +0200
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Library/Ruby/Gems/2.6.0/gems/railties-6.0.2.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Library/Ruby/Gems/2.6.0/gems/railties-6.0.2.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 25.6ms | Allocations: 190)
+Completed 200 OK in 31ms (Views: 27.3ms | ActiveRecord: 0.0ms | Allocations: 936)
+
+
+Started GET "/" for ::1 at 2020-04-19 02:28:49 +0200
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Library/Ruby/Gems/2.6.0/gems/railties-6.0.2.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Library/Ruby/Gems/2.6.0/gems/railties-6.0.2.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 0.4ms | Allocations: 7)
+Completed 200 OK in 4ms (Views: 1.1ms | ActiveRecord: 0.0ms | Allocations: 456)
+
+
+Started GET "/banks" for ::1 at 2020-04-19 02:28:52 +0200
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.2ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  ↳ app/views/banks/index.html.erb:14
+  Rendered banks/index.html.erb within layouts/application (Duration: 3.7ms | Allocations: 1226)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 37ms (Views: 35.2ms | ActiveRecord: 0.2ms | Allocations: 5251)
+
+
+Started GET "/banks" for ::1 at 2020-04-19 02:29:25 +0200
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.9ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  ↳ app/views/banks/index.html.erb:14
+  Rendered banks/index.html.erb within layouts/application (Duration: 10.8ms | Allocations: 1467)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 50ms (Views: 44.0ms | ActiveRecord: 0.9ms | Allocations: 6444)
+
+
+Started GET "/banks" for ::1 at 2020-04-19 02:29:27 +0200
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.3ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  ↳ app/views/banks/index.html.erb:14
+  Rendered banks/index.html.erb within layouts/application (Duration: 3.5ms | Allocations: 1226)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 80ms (Views: 17.9ms | ActiveRecord: 0.3ms | Allocations: 5258)
+
+
+Started GET "/banks" for ::1 at 2020-04-19 02:30:09 +0200
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.3ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  ↳ app/views/banks/index.html.erb:14
+  Rendered banks/index.html.erb within layouts/application (Duration: 3.4ms | Allocations: 1217)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 69ms (Views: 66.5ms | ActiveRecord: 0.3ms | Allocations: 13948)
+
+
+Started GET "/banks" for ::1 at 2020-04-19 02:30:41 +0200
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.4ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  ↳ app/views/banks/index.html.erb:14
+  Rendered banks/index.html.erb within layouts/application (Duration: 4.5ms | Allocations: 1472)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 35ms (Views: 32.9ms | ActiveRecord: 0.4ms | Allocations: 6483)
+
+
+Started GET "/banks" for ::1 at 2020-04-19 02:31:08 +0200
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.2ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  ↳ app/views/banks/index.html.erb:14
+  Rendered banks/index.html.erb within layouts/application (Duration: 2.6ms | Allocations: 1226)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 44ms (Views: 42.4ms | ActiveRecord: 0.2ms | Allocations: 14587)
+
+
+Started GET "/banks" for ::1 at 2020-04-19 02:33:59 +0200
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.2ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  ↳ app/views/banks/index.html.erb:14
+  Rendered banks/index.html.erb within layouts/application (Duration: 2.9ms | Allocations: 1472)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 57ms (Views: 55.4ms | ActiveRecord: 0.2ms | Allocations: 16121)
+
+
+Started GET "/banks/1/edit" for ::1 at 2020-04-19 02:34:06 +0200
+Processing by BanksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (0.5ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:73:in `set_bank'
+  Rendering banks/edit.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (0.7ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  ↳ app/views/banks/_form.html.erb:23
+  Rendered banks/_form.html.erb (Duration: 13.9ms | Allocations: 3843)
+  Rendered banks/edit.html.erb within layouts/application (Duration: 15.6ms | Allocations: 4234)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 151ms (Views: 24.5ms | ActiveRecord: 2.9ms | Allocations: 17335)
+
+
+Started GET "/banks/1/edit" for ::1 at 2020-04-19 02:34:31 +0200
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by BanksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (0.1ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:73:in `set_bank'
+  Rendering banks/edit.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (0.2ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  ↳ app/views/banks/_form.html.erb:23
+  Rendered banks/_form.html.erb (Duration: 6.5ms | Allocations: 3487)
+  Rendered banks/edit.html.erb within layouts/application (Duration: 7.1ms | Allocations: 3606)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 52ms (Views: 23.0ms | ActiveRecord: 1.6ms | Allocations: 16506)
+
+
+Started PATCH "/banks/1" for ::1 at 2020-04-19 02:34:34 +0200
+Processing by BanksController#update as HTML
+  Parameters: {"authenticity_token"=>"unm5cxDISxv0606Zb+3S1zmZz9Uw2E3DIONxDu3eGJ69dhw0qXWp+XpElLYsocFnwZQKOqJfrMVH8xNuF+MNXQ==", "bank"=>{"name"=>"Banco Scotiabank", "bank_subsidiaries_attributes"=>{"0"=>{"address"=>"Av. La Molina 562, Lima", "_destroy"=>"0", "id"=>"1"}, "1"=>{"address"=>"Av. Risso 5561 Of. 202 P.2 - Lince", "_destroy"=>"0", "id"=>"2"}, "2"=>{"address"=>"Test", "_destroy"=>"0", "id"=>"3"}, "3"=>{"address"=>"nueva sucursal", "_destroy"=>"0", "id"=>"9"}, "4"=>{"address"=>"test sucursal", "_destroy"=>"0", "id"=>"10"}, "5"=>{"address"=>"test sucursal", "_destroy"=>"0", "id"=>"11"}, "6"=>{"address"=>"", "_destroy"=>"0"}}}, "commit"=>"Update Bank", "id"=>"1"}
+  [1m[36mBank Load (0.2ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:73:in `set_bank'
+[31mUnpermitted parameter: :_destroy[0m
+[31mUnpermitted parameter: :_destroy[0m
+[31mUnpermitted parameter: :_destroy[0m
+[31mUnpermitted parameter: :_destroy[0m
+[31mUnpermitted parameter: :_destroy[0m
+[31mUnpermitted parameter: :_destroy[0m
+[31mUnpermitted parameter: :_destroy[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/banks_controller.rb:46:in `block in update'
+  [1m[36mBankSubsidiary Load (0.4ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? AND "bank_subsidiaries"."id" IN (?, ?, ?, ?, ?, ?)[0m  [["bank_id", 1], ["id", 1], ["id", 2], ["id", 3], ["id", 9], ["id", 10], ["id", 11]]
+  ↳ app/controllers/banks_controller.rb:46:in `block in update'
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/banks_controller.rb:46:in `block in update'
+  Rendering banks/edit.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (0.2ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  ↳ app/views/banks/_form.html.erb:23
+  Rendered banks/_form.html.erb (Duration: 5.5ms | Allocations: 3814)
+  Rendered banks/edit.html.erb within layouts/application (Duration: 5.8ms | Allocations: 3930)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 63ms (Views: 11.0ms | ActiveRecord: 1.0ms | Allocations: 13616)
+
+
+Started GET "/banks/1" for ::1 at 2020-04-19 02:36:19 +0200
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (0.2ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:73:in `set_bank'
+  Rendering banks/show.html.erb within layouts/application
+  [1m[36mBankSubsidiary Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? LIMIT ?[0m  [["bank_id", 1], ["LIMIT", 1]]
+  ↳ app/views/banks/show.html.erb:10
+  [1m[36mBankSubsidiary Load (0.1ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  ↳ app/views/banks/show.html.erb:12
+  Rendered banks/show.html.erb within layouts/application (Duration: 4.2ms | Allocations: 1984)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 32ms (Views: 25.8ms | ActiveRecord: 0.6ms | Allocations: 7521)
+
+
+Started GET "/banks/1/edit" for ::1 at 2020-04-19 02:36:22 +0200
+Processing by BanksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (0.5ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:73:in `set_bank'
+  Rendering banks/edit.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (0.3ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  ↳ app/views/banks/_form.html.erb:23
+  Rendered banks/_form.html.erb (Duration: 53.3ms | Allocations: 3694)
+  Rendered banks/edit.html.erb within layouts/application (Duration: 55.8ms | Allocations: 4085)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 104ms (Views: 76.6ms | ActiveRecord: 0.8ms | Allocations: 9634)
+
+
+Started PATCH "/banks/1" for ::1 at 2020-04-19 02:36:24 +0200
+Processing by BanksController#update as HTML
+  Parameters: {"authenticity_token"=>"n7OgSIcINWOwzFdP8DZ6eyhw2m1Ov26MCzvfJVry1DQV5N5tYU6TiPTS9C0iEYAjYv8hjlUuqBY3FRDoLzVxuQ==", "bank"=>{"name"=>"Banco Scotiabank", "bank_subsidiaries_attributes"=>{"0"=>{"address"=>"Av. La Molina 562, Lima", "_destroy"=>"0", "id"=>"1"}, "1"=>{"address"=>"Av. Risso 5561 Of. 202 P.2 - Lince", "_destroy"=>"0", "id"=>"2"}, "2"=>{"address"=>"Test", "_destroy"=>"0", "id"=>"3"}, "3"=>{"address"=>"nueva sucursal", "_destroy"=>"0", "id"=>"9"}, "4"=>{"address"=>"test sucursal", "_destroy"=>"0", "id"=>"10"}, "5"=>{"address"=>"test sucursal", "_destroy"=>"0", "id"=>"11"}, "6"=>{"address"=>"", "_destroy"=>"0"}}}, "commit"=>"Update Bank", "id"=>"1"}
+  [1m[36mBank Load (0.4ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:73:in `set_bank'
+[31mUnpermitted parameter: :_destroy[0m
+[31mUnpermitted parameter: :_destroy[0m
+[31mUnpermitted parameter: :_destroy[0m
+[31mUnpermitted parameter: :_destroy[0m
+[31mUnpermitted parameter: :_destroy[0m
+[31mUnpermitted parameter: :_destroy[0m
+[31mUnpermitted parameter: :_destroy[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/banks_controller.rb:46:in `block in update'
+  [1m[36mBankSubsidiary Load (2.2ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? AND "bank_subsidiaries"."id" IN (?, ?, ?, ?, ?, ?)[0m  [["bank_id", 1], ["id", 1], ["id", 2], ["id", 3], ["id", 9], ["id", 10], ["id", 11]]
+  ↳ app/controllers/banks_controller.rb:46:in `block in update'
+  [1m[35m (0.7ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/banks_controller.rb:46:in `block in update'
+  Rendering banks/edit.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (0.5ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  ↳ app/views/banks/_form.html.erb:23
+  Rendered banks/_form.html.erb (Duration: 12.4ms | Allocations: 3810)
+  Rendered banks/edit.html.erb within layouts/application (Duration: 13.0ms | Allocations: 3926)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 77ms (Views: 24.3ms | ActiveRecord: 4.0ms | Allocations: 13468)
+
+
+Started GET "/banks/1" for ::1 at 2020-04-19 02:36:41 +0200
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (0.6ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:73:in `set_bank'
+  Rendering banks/show.html.erb within layouts/application
+  [1m[36mBankSubsidiary Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? LIMIT ?[0m  [["bank_id", 1], ["LIMIT", 1]]
+  ↳ app/views/banks/show.html.erb:10
+  [1m[36mBankSubsidiary Load (0.2ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  ↳ app/views/banks/show.html.erb:12
+  Rendered banks/show.html.erb within layouts/application (Duration: 8.4ms | Allocations: 1946)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 40ms (Views: 26.4ms | ActiveRecord: 1.2ms | Allocations: 7478)
+
+
+Started GET "/bank_subsidiaries/10" for ::1 at 2020-04-19 02:36:43 +0200
+Processing by BankSubsidiariesController#show as HTML
+  Parameters: {"id"=>"10"}
+  [1m[36mBankSubsidiary Load (1.0ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/bank_subsidiaries_controller.rb:67:in `set_bank_subsidiary'
+  Rendering bank_subsidiaries/show.html.erb within layouts/application
+  Rendered bank_subsidiaries/show.html.erb within layouts/application (Duration: 1.6ms | Allocations: 261)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 28ms (Views: 21.0ms | ActiveRecord: 1.0ms | Allocations: 5537)
+
+
+Started GET "/banks/1/edit" for ::1 at 2020-04-19 02:36:46 +0200
+Processing by BanksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (2.1ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:73:in `set_bank'
+  Rendering banks/edit.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (37.2ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  ↳ app/views/banks/_form.html.erb:22
+  Rendered banks/_form.html.erb (Duration: 82.4ms | Allocations: 4369)
+  Rendered banks/edit.html.erb within layouts/application (Duration: 84.0ms | Allocations: 4760)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 107ms (Views: 55.0ms | ActiveRecord: 39.3ms | Allocations: 9640)
+
+
+Started PATCH "/banks/1" for ::1 at 2020-04-19 02:36:49 +0200
+Processing by BanksController#update as HTML
+  Parameters: {"authenticity_token"=>"jlNc1Nuawj3/oRPO82MFUcLGU58HpjkNh+Ol8jqCauIEBCLxPdxk1ru/sKwhRP8JiEmofBw3/5e7zWo/T0XPbw==", "bank"=>{"name"=>"Banco Scotiabank", "bank_subsidiaries_attributes"=>{"0"=>{"address"=>"Av. La Molina 562, Lima", "_destroy"=>"0", "id"=>"1"}, "1"=>{"address"=>"Av. Risso 5561 Of. 202 P.2 - Lince", "_destroy"=>"0", "id"=>"2"}, "2"=>{"address"=>"Test", "_destroy"=>"0", "id"=>"3"}, "3"=>{"address"=>"nueva sucursal", "_destroy"=>"0", "id"=>"9"}, "4"=>{"address"=>"test sucursal", "_destroy"=>"0", "id"=>"10"}, "5"=>{"address"=>"test sucursal", "_destroy"=>"0", "id"=>"11"}, "6"=>{"address"=>"", "_destroy"=>"0"}}}, "commit"=>"Update Bank", "id"=>"1"}
+  [1m[36mBank Load (0.4ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:73:in `set_bank'
+[31mUnpermitted parameter: :_destroy[0m
+[31mUnpermitted parameter: :_destroy[0m
+[31mUnpermitted parameter: :_destroy[0m
+[31mUnpermitted parameter: :_destroy[0m
+[31mUnpermitted parameter: :_destroy[0m
+[31mUnpermitted parameter: :_destroy[0m
+[31mUnpermitted parameter: :_destroy[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/banks_controller.rb:46:in `block in update'
+  [1m[36mBankSubsidiary Load (0.3ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? AND "bank_subsidiaries"."id" IN (?, ?, ?, ?, ?, ?)[0m  [["bank_id", 1], ["id", 1], ["id", 2], ["id", 3], ["id", 9], ["id", 10], ["id", 11]]
+  ↳ app/controllers/banks_controller.rb:46:in `block in update'
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/banks_controller.rb:46:in `block in update'
+  Rendering banks/edit.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (0.2ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  ↳ app/views/banks/_form.html.erb:22
+  Rendered banks/_form.html.erb (Duration: 7.5ms | Allocations: 3810)
+  Rendered banks/edit.html.erb within layouts/application (Duration: 8.2ms | Allocations: 3926)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 33ms (Views: 14.4ms | ActiveRecord: 0.9ms | Allocations: 13469)
+
+
+Started GET "/banks/1" for ::1 at 2020-04-19 02:38:42 +0200
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (0.9ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:73:in `set_bank'
+  Rendering banks/show.html.erb within layouts/application
+  [1m[36mBankSubsidiary Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? LIMIT ?[0m  [["bank_id", 1], ["LIMIT", 1]]
+  ↳ app/views/banks/show.html.erb:10
+  [1m[36mBankSubsidiary Load (0.2ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  ↳ app/views/banks/show.html.erb:12
+  Rendered banks/show.html.erb within layouts/application (Duration: 14.0ms | Allocations: 1945)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 61ms (Views: 46.2ms | ActiveRecord: 1.5ms | Allocations: 7483)
+
+
+Started GET "/banks/1/edit" for ::1 at 2020-04-19 02:38:45 +0200
+Processing by BanksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (0.3ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:73:in `set_bank'
+  Rendering banks/edit.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (1.2ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  ↳ app/views/banks/_form.html.erb:22
+  Rendered banks/_form.html.erb (Duration: 28.6ms | Allocations: 3804)
+  Rendered banks/edit.html.erb within layouts/application (Duration: 40.8ms | Allocations: 4806)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 71ms (Views: 62.9ms | ActiveRecord: 1.4ms | Allocations: 9748)
+
+
+Started GET "/banks/1/edit" for ::1 at 2020-04-19 02:39:42 +0200
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by BanksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (0.2ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:73:in `set_bank'
+  Rendering banks/edit.html.erb within layouts/application
+  Rendered banks/_form.html.erb (Duration: 2.3ms | Allocations: 1380)
+  Rendered banks/edit.html.erb within layouts/application (Duration: 3.1ms | Allocations: 1724)
+Completed 500 Internal Server Error in 27ms (ActiveRecord: 2.4ms | Allocations: 11714)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <%= form_with(model: bank, local: true) do |form| %>
+  <% if bank.errors.any? %>
+    <div id="error_explanation">
+      <div class="alert alert-danger" role="alert">
+        <%= pluralize(bank.errors.count, "error") %> prohibited this bank from being saved:
+        <ul>
+          <% bank.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %><br>
+    <%= form.text_field :name, class: 'form-control' %>
+  </div>
+
+  <h2>Sucursales</h2>
+
+  <%= form.fields_for :bank_subsidiaries do | subsidiary | %>
+    <div class="bank_subsidiaries_fields">
+      <div class="fields">
+        <%= subsidiary.label :address, "Direccion" %><br>
+        <%= subsidiary.text_field :address, class: 'form-control' %>
+        <%= subsidiary.check_box :_destroy, class: 'form-control' %>
+        <%= subsidiary.label :_destroy, "Borrar" %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit, class: 'btn btn-primary' %>
+  </div>
+<% end %>
+
+):
+1:    <%= form_with(model: bank, local: true) do |form| %>
+2:      <% if bank.errors.any? %>
+3:        <div id="error_explanation">
+4:          <div class="alert alert-danger" role="alert">
+5:            <%= pluralize(bank.errors.count, "error") %> prohibited this bank from being saved:
+6:            <ul>
+7:              <% bank.errors.full_messages.each do |message| %>
+8:                <li><%= message %></li>
+9:              <% end %>
+10:            </ul>
+11:          </div>
+12:        </div>
+13:      <% end %>
+14:    
+15:      <div class="field">
+16:        <%= form.label :name %><br>
+17:        <%= form.text_field :name, class: 'form-control' %>
+18:      </div>
+19:    
+20:      <h2>Sucursales</h2>
+21:    
+22:      <%= form.fields_for :bank_subsidiaries do | subsidiary | %>
+23:        <div class="bank_subsidiaries_fields">
+24:          <div class="fields">
+25:            <%= subsidiary.label :address, "Direccion" %><br>
+26:            <%= subsidiary.text_field :address, class: 'form-control' %>
+27:            <%= subsidiary.check_box :_destroy, class: 'form-control' %>
+28:            <%= subsidiary.label :_destroy, "Borrar" %>
+29:          </div>
+30:        </div>
+31:      <% end %>
+32:    
+33:      <div class="actions">
+34:        <%= form.submit, class: 'btn btn-primary' %>
+35:      </div>
+36:    <% end %>
+  
+app/views/banks/_form.html.erb:34: syntax error, unexpected tLABEL, expecting '='
+app/views/banks/_form.html.erb:34: syntax error, unexpected tLABEL, expecting '='
+app/views/banks/_form.html.erb:34: syntax error, unexpected tLABEL, expecting '='
+app/views/banks/_form.html.erb:34: syntax error, unexpected tLABEL, expecting '='
+app/views/banks/_form.html.erb:34: syntax error, unexpected tLABEL, expecting '='
+app/views/banks/_form.html.erb:34: syntax error, unexpected tLABEL, expecting '='
+app/views/banks/edit.html.erb:3
+Started GET "/banks/1/edit" for ::1 at 2020-04-19 02:40:13 +0200
+Processing by BanksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (0.4ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:73:in `set_bank'
+  Rendering banks/edit.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (0.3ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  ↳ app/views/banks/_form.html.erb:22
+  Rendered banks/_form.html.erb (Duration: 8.6ms | Allocations: 4011)
+  Rendered banks/edit.html.erb within layouts/application (Duration: 10.1ms | Allocations: 4407)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 39ms (Views: 32.8ms | ActiveRecord: 0.6ms | Allocations: 10107)
+
+
+Started GET "/banks/1/edit" for ::1 at 2020-04-19 02:40:43 +0200
+Processing by BanksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (0.3ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:73:in `set_bank'
+  Rendering banks/edit.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (0.3ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  ↳ app/views/banks/_form.html.erb:22
+  Rendered banks/_form.html.erb (Duration: 12.0ms | Allocations: 3671)
+  Rendered banks/edit.html.erb within layouts/application (Duration: 17.6ms | Allocations: 4061)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 45ms (Views: 40.1ms | ActiveRecord: 0.6ms | Allocations: 9754)
+
+
+Started GET "/banks/1/edit" for ::1 at 2020-04-19 02:40:52 +0200
+Processing by BanksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (0.5ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:73:in `set_bank'
+  Rendering banks/edit.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (0.5ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  ↳ app/views/banks/_form.html.erb:22
+  Rendered banks/_form.html.erb (Duration: 10.8ms | Allocations: 3669)
+  Rendered banks/edit.html.erb within layouts/application (Duration: 12.1ms | Allocations: 4059)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 38ms (Views: 26.4ms | ActiveRecord: 1.0ms | Allocations: 9756)
+
+
+Started GET "/banks/1" for ::1 at 2020-04-19 02:40:59 +0200
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (0.2ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:73:in `set_bank'
+  Rendering banks/show.html.erb within layouts/application
+  [1m[36mBankSubsidiary Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? LIMIT ?[0m  [["bank_id", 1], ["LIMIT", 1]]
+  ↳ app/views/banks/show.html.erb:10
+  [1m[36mBankSubsidiary Load (0.1ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  ↳ app/views/banks/show.html.erb:12
+  Rendered banks/show.html.erb within layouts/application (Duration: 4.9ms | Allocations: 2067)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 41ms (Views: 33.3ms | ActiveRecord: 0.6ms | Allocations: 6783)
+
+
+Started PATCH "/banks/1" for ::1 at 2020-04-19 02:41:21 +0200
+Processing by BanksController#update as HTML
+  Parameters: {"authenticity_token"=>"5cVGbiobSpElHLN8hXpqgOM+yf3zaCgvaIrymtrEv+PiyuMpk6aoc6uzaVPGNnkwGzMMEmHvySkPmpD6IPmqIA==", "bank"=>{"name"=>"Banco Scotiabank", "bank_subsidiaries_attributes"=>{"0"=>{"address"=>"Av. La Molina 562, Lima", "_destroy"=>"0", "id"=>"1"}, "1"=>{"address"=>"Av. Risso 5561 Of. 202 P.2 - Lince", "_destroy"=>"0", "id"=>"2"}, "2"=>{"address"=>"Test", "_destroy"=>"0", "id"=>"3"}, "3"=>{"address"=>"nueva sucursal", "_destroy"=>"0", "id"=>"9"}, "4"=>{"address"=>"test sucursal", "_destroy"=>"0", "id"=>"10"}, "5"=>{"address"=>"test sucursal", "_destroy"=>"0", "id"=>"11"}, "6"=>{"address"=>"", "_destroy"=>"0"}}}, "commit"=>"Submit", "id"=>"1"}
+  [1m[36mBank Load (0.2ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:73:in `set_bank'
+[31mUnpermitted parameter: :_destroy[0m
+[31mUnpermitted parameter: :_destroy[0m
+[31mUnpermitted parameter: :_destroy[0m
+[31mUnpermitted parameter: :_destroy[0m
+[31mUnpermitted parameter: :_destroy[0m
+[31mUnpermitted parameter: :_destroy[0m
+[31mUnpermitted parameter: :_destroy[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/banks_controller.rb:46:in `block in update'
+  [1m[36mBankSubsidiary Load (0.9ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? AND "bank_subsidiaries"."id" IN (?, ?, ?, ?, ?, ?)[0m  [["bank_id", 1], ["id", 1], ["id", 2], ["id", 3], ["id", 9], ["id", 10], ["id", 11]]
+  ↳ app/controllers/banks_controller.rb:46:in `block in update'
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/banks_controller.rb:46:in `block in update'
+Redirected to http://localhost:3000/banks/1
+Completed 302 Found in 18ms (ActiveRecord: 1.3ms | Allocations: 5039)
+
+
+Started GET "/banks/1" for ::1 at 2020-04-19 02:41:21 +0200
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (0.1ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:73:in `set_bank'
+  Rendering banks/show.html.erb within layouts/application
+  [1m[36mBankSubsidiary Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? LIMIT ?[0m  [["bank_id", 1], ["LIMIT", 1]]
+  ↳ app/views/banks/show.html.erb:10
+  [1m[36mBankSubsidiary Load (0.3ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  ↳ app/views/banks/show.html.erb:12
+  Rendered banks/show.html.erb within layouts/application (Duration: 5.8ms | Allocations: 1672)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 37ms (Views: 15.7ms | ActiveRecord: 0.7ms | Allocations: 6266)
+
+
+Started GET "/banks" for ::1 at 2020-04-19 02:41:24 +0200
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.3ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  ↳ app/views/banks/index.html.erb:14
+  Rendered banks/index.html.erb within layouts/application (Duration: 5.0ms | Allocations: 1481)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 33ms (Views: 30.8ms | ActiveRecord: 0.3ms | Allocations: 5698)
+
+
+Started GET "/banks/4/edit" for ::1 at 2020-04-19 02:41:27 +0200
+Processing by BanksController#edit as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mBank Load (0.1ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:73:in `set_bank'
+  Rendering banks/edit.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (0.3ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 4]]
+  ↳ app/views/banks/_form.html.erb:22
+  Rendered banks/_form.html.erb (Duration: 5.3ms | Allocations: 1967)
+  Rendered banks/edit.html.erb within layouts/application (Duration: 5.8ms | Allocations: 2084)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 58ms (Views: 55.8ms | ActiveRecord: 0.4ms | Allocations: 6817)
+
+
+Started PATCH "/banks/4" for ::1 at 2020-04-19 02:41:34 +0200
+Processing by BanksController#update as HTML
+  Parameters: {"authenticity_token"=>"r1HL9HFITKWCH5SRVv2kuHhbvIrJZtmI2Wjqs7Z6hPFCSkLV8LrVuhLZ6Q9NKvJGQRVHNDl1Mm1/DRq/nkRU/A==", "bank"=>{"name"=>"Banco Interbank", "bank_subsidiaries_attributes"=>{"0"=>{"address"=>"Av. El sol 421, Cusco", "_destroy"=>"0", "id"=>"7"}, "1"=>{"address"=>"Av. Calle Nueva 106, Cusco", "_destroy"=>"0", "id"=>"8"}, "2"=>{"address"=>"", "_destroy"=>"0"}}}, "commit"=>"Submit", "id"=>"4"}
+  [1m[36mBank Load (0.2ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:73:in `set_bank'
+[31mUnpermitted parameter: :_destroy[0m
+[31mUnpermitted parameter: :_destroy[0m
+[31mUnpermitted parameter: :_destroy[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/banks_controller.rb:46:in `block in update'
+  [1m[36mBankSubsidiary Load (0.5ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? AND "bank_subsidiaries"."id" IN (?, ?)[0m  [["bank_id", 4], ["id", 7], ["id", 8]]
+  ↳ app/controllers/banks_controller.rb:46:in `block in update'
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/banks_controller.rb:46:in `block in update'
+Redirected to http://localhost:3000/banks/4
+Completed 302 Found in 10ms (ActiveRecord: 0.9ms | Allocations: 3963)
+
+
+Started GET "/banks/4" for ::1 at 2020-04-19 02:41:35 +0200
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mBank Load (0.2ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:73:in `set_bank'
+  Rendering banks/show.html.erb within layouts/application
+  [1m[36mBankSubsidiary Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? LIMIT ?[0m  [["bank_id", 4], ["LIMIT", 1]]
+  ↳ app/views/banks/show.html.erb:10
+  [1m[36mBankSubsidiary Load (0.4ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 4]]
+  ↳ app/views/banks/show.html.erb:12
+  Rendered banks/show.html.erb within layouts/application (Duration: 4.9ms | Allocations: 1480)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 45ms (Views: 10.1ms | ActiveRecord: 0.8ms | Allocations: 6065)
+
+
+Started GET "/banks" for ::1 at 2020-04-19 02:41:38 +0200
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.1ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  ↳ app/views/banks/index.html.erb:14
+  Rendered banks/index.html.erb within layouts/application (Duration: 2.8ms | Allocations: 1217)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 17ms (Views: 15.6ms | ActiveRecord: 0.1ms | Allocations: 5281)
+
+
+Started GET "/banks/4/edit" for ::1 at 2020-04-19 02:41:40 +0200
+Processing by BanksController#edit as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mBank Load (0.2ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:73:in `set_bank'
+  Rendering banks/edit.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (0.1ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 4]]
+  ↳ app/views/banks/_form.html.erb:22
+  Rendered banks/_form.html.erb (Duration: 5.9ms | Allocations: 1965)
+  Rendered banks/edit.html.erb within layouts/application (Duration: 6.4ms | Allocations: 2081)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 35ms (Views: 32.1ms | ActiveRecord: 0.4ms | Allocations: 6815)
+
+
+Started GET "/banks/4/edit" for ::1 at 2020-04-19 02:43:01 +0200
+Processing by BanksController#edit as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mBank Load (0.5ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:73:in `set_bank'
+  Rendering banks/edit.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (0.3ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 4]]
+  ↳ app/views/banks/_form.html.erb:22
+  Rendered banks/_form.html.erb (Duration: 13.0ms | Allocations: 2413)
+  Rendered banks/edit.html.erb within layouts/application (Duration: 15.5ms | Allocations: 2807)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 60ms (Views: 46.0ms | ActiveRecord: 0.8ms | Allocations: 8504)
+
+
+Started GET "/banks" for ::1 at 2020-04-19 02:43:19 +0200
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.1ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  ↳ app/views/banks/index.html.erb:14
+  Rendered banks/index.html.erb within layouts/application (Duration: 4.7ms | Allocations: 1467)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 15ms (Views: 12.7ms | ActiveRecord: 0.1ms | Allocations: 5683)
+
+
+Started GET "/banks/4" for ::1 at 2020-04-19 02:43:21 +0200
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mBank Load (0.3ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:73:in `set_bank'
+  Rendering banks/show.html.erb within layouts/application
+  [1m[36mBankSubsidiary Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? LIMIT ?[0m  [["bank_id", 4], ["LIMIT", 1]]
+  ↳ app/views/banks/show.html.erb:10
+  [1m[36mBankSubsidiary Load (0.2ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 4]]
+  ↳ app/views/banks/show.html.erb:12
+  Rendered banks/show.html.erb within layouts/application (Duration: 4.5ms | Allocations: 1748)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 28ms (Views: 24.1ms | ActiveRecord: 0.7ms | Allocations: 6463)
+
+
+Started GET "/bank_subsidiaries/7" for ::1 at 2020-04-19 02:43:22 +0200
+Processing by BankSubsidiariesController#show as HTML
+  Parameters: {"id"=>"7"}
+  [1m[36mBankSubsidiary Load (0.5ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/bank_subsidiaries_controller.rb:67:in `set_bank_subsidiary'
+  Rendering bank_subsidiaries/show.html.erb within layouts/application
+  Rendered bank_subsidiaries/show.html.erb within layouts/application (Duration: 1.7ms | Allocations: 261)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 20ms (Views: 16.0ms | ActiveRecord: 0.5ms | Allocations: 5529)
+
+
+Started GET "/banks" for ::1 at 2020-04-19 02:44:08 +0200
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.1ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  ↳ app/views/banks/index.html.erb:14
+  Rendered banks/index.html.erb within layouts/application (Duration: 2.4ms | Allocations: 1226)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 25ms (Views: 23.8ms | ActiveRecord: 0.1ms | Allocations: 5298)
+
+
+Started DELETE "/banks/5" for ::1 at 2020-04-19 02:44:18 +0200
+Processing by BanksController#destroy as HTML
+  Parameters: {"authenticity_token"=>"q/J5gubDKzguYwxtOb+OkyB57XliofzljoVgcerwgZGs/dzFX37J2qDM1kJ6850j2HQolvAmHePplQIREM2UUg==", "id"=>"5"}
+  [1m[36mBank Load (0.2ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:73:in `set_bank'
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/banks_controller.rb:59:in `destroy'
+  [1m[36mBankSubsidiary Load (1.4ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 5]]
+  ↳ app/controllers/banks_controller.rb:59:in `destroy'
+  [1m[36mBankSubsidiary Destroy (1.6ms)[0m  [1m[31mDELETE FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."id" = ?[0m  [["id", 12]]
+  ↳ app/controllers/banks_controller.rb:59:in `destroy'
+  [1m[36mBank Destroy (0.5ms)[0m  [1m[31mDELETE FROM "banks" WHERE "banks"."id" = ?[0m  [["id", 5]]
+  ↳ app/controllers/banks_controller.rb:59:in `destroy'
+  [1m[35m (1.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/banks_controller.rb:59:in `destroy'
+Redirected to http://localhost:3000/banks
+Completed 302 Found in 29ms (ActiveRecord: 5.6ms | Allocations: 4472)
+
+
+Started GET "/banks" for ::1 at 2020-04-19 02:44:18 +0200
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.2ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  ↳ app/views/banks/index.html.erb:14
+  Rendered banks/index.html.erb within layouts/application (Duration: 2.1ms | Allocations: 1096)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 26ms (Views: 24.6ms | ActiveRecord: 0.2ms | Allocations: 5177)
+
+
+Started GET "/banks" for ::1 at 2020-04-19 02:45:10 +0200
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.2ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  ↳ app/views/banks/index.html.erb:14
+  Rendered banks/index.html.erb within layouts/application (Duration: 4.3ms | Allocations: 1349)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 28ms (Views: 25.6ms | ActiveRecord: 0.2ms | Allocations: 6392)
+
+
+Started GET "/banks" for ::1 at 2020-04-19 02:45:13 +0200
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.3ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  ↳ app/views/banks/index.html.erb:14
+  Rendered banks/index.html.erb within layouts/application (Duration: 3.3ms | Allocations: 1103)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 11ms (Views: 9.8ms | ActiveRecord: 0.3ms | Allocations: 5179)
+
+
+Started GET "/banks/1" for ::1 at 2020-04-19 02:45:15 +0200
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (0.2ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:73:in `set_bank'
+  Rendering banks/show.html.erb within layouts/application
+  [1m[36mBankSubsidiary Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? LIMIT ?[0m  [["bank_id", 1], ["LIMIT", 1]]
+  ↳ app/views/banks/show.html.erb:10
+  [1m[36mBankSubsidiary Load (0.2ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  ↳ app/views/banks/show.html.erb:12
+  Rendered banks/show.html.erb within layouts/application (Duration: 7.8ms | Allocations: 1964)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 36ms (Views: 32.8ms | ActiveRecord: 0.6ms | Allocations: 6676)
+
+
+Started GET "/banks/1" for ::1 at 2020-04-19 02:45:33 +0200
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (0.5ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:73:in `set_bank'
+  Rendering banks/show.html.erb within layouts/application
+  [1m[36mBankSubsidiary Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? LIMIT ?[0m  [["bank_id", 1], ["LIMIT", 1]]
+  ↳ app/views/banks/show.html.erb:10
+  [1m[36mBankSubsidiary Load (0.1ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  ↳ app/views/banks/show.html.erb:12
+  Rendered banks/show.html.erb within layouts/application (Duration: 4.5ms | Allocations: 1962)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 30ms (Views: 25.3ms | ActiveRecord: 0.9ms | Allocations: 7494)
+
+
+Started GET "/banks/1" for ::1 at 2020-04-19 02:45:35 +0200
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (1.3ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:73:in `set_bank'
+  Rendering banks/show.html.erb within layouts/application
+  [1m[36mBankSubsidiary Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? LIMIT ?[0m  [["bank_id", 1], ["LIMIT", 1]]
+  ↳ app/views/banks/show.html.erb:10
+  [1m[36mBankSubsidiary Load (0.2ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  ↳ app/views/banks/show.html.erb:12
+  Rendered banks/show.html.erb within layouts/application (Duration: 10.3ms | Allocations: 1694)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 35ms (Views: 22.0ms | ActiveRecord: 2.0ms | Allocations: 6267)
+
+
+Started GET "/banks/1" for ::1 at 2020-04-19 02:46:42 +0200
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (0.3ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:73:in `set_bank'
+  Rendering banks/show.html.erb within layouts/application
+  [1m[36mBankSubsidiary Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? LIMIT ?[0m  [["bank_id", 1], ["LIMIT", 1]]
+  ↳ app/views/banks/show.html.erb:10
+  [1m[36mBankSubsidiary Load (0.4ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  ↳ app/views/banks/show.html.erb:12
+  Rendered banks/show.html.erb within layouts/application (Duration: 9.2ms | Allocations: 1961)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 42ms (Views: 36.7ms | ActiveRecord: 1.0ms | Allocations: 7491)
+
+
+Started GET "/banks/1" for ::1 at 2020-04-19 02:46:48 +0200
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (0.9ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:73:in `set_bank'
+  Rendering banks/show.html.erb within layouts/application
+  [1m[36mBankSubsidiary Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? LIMIT ?[0m  [["bank_id", 1], ["LIMIT", 1]]
+  ↳ app/views/banks/show.html.erb:10
+  [1m[36mBankSubsidiary Load (0.3ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  ↳ app/views/banks/show.html.erb:12
+  Rendered banks/show.html.erb within layouts/application (Duration: 53.5ms | Allocations: 1966)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 80ms (Views: 73.3ms | ActiveRecord: 1.5ms | Allocations: 7502)
+
+
+Started GET "/banks" for ::1 at 2020-04-19 02:46:53 +0200
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.2ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  ↳ app/views/banks/index.html.erb:14
+  Rendered banks/index.html.erb within layouts/application (Duration: 8.0ms | Allocations: 1344)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 40ms (Views: 37.2ms | ActiveRecord: 0.2ms | Allocations: 5555)
+
+
+Started GET "/banks" for ::1 at 2020-04-19 02:47:21 +0200
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.9ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  ↳ app/views/banks/index.html.erb:14
+  Rendered banks/index.html.erb within layouts/application (Duration: 26.1ms | Allocations: 1354)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 168ms (Views: 152.9ms | ActiveRecord: 0.9ms | Allocations: 6393)
+
+
+Started GET "/banks/1/edit" for ::1 at 2020-04-19 02:47:23 +0200
+Processing by BanksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (0.6ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:73:in `set_bank'
+  Rendering banks/edit.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (0.4ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  ↳ app/views/banks/_form.html.erb:22
+  Rendered banks/_form.html.erb (Duration: 47.6ms | Allocations: 3720)
+  Rendered banks/edit.html.erb within layouts/application (Duration: 50.7ms | Allocations: 4132)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 101ms (Views: 80.4ms | ActiveRecord: 1.0ms | Allocations: 9707)
+
+
+Started GET "/banks/1/edit" for ::1 at 2020-04-19 02:48:48 +0200
+Processing by BanksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (1.4ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:73:in `set_bank'
+  Rendering banks/edit.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (0.6ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  ↳ app/views/banks/_form.html.erb:22
+  Rendered banks/_form.html.erb (Duration: 10.6ms | Allocations: 3720)
+  Rendered banks/edit.html.erb within layouts/application (Duration: 13.3ms | Allocations: 4132)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 89ms (Views: 50.5ms | ActiveRecord: 1.9ms | Allocations: 9823)
+
+
+Started GET "/banks/1" for ::1 at 2020-04-19 02:49:23 +0200
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBank Load (0.1ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:73:in `set_bank'
+  Rendering banks/show.html.erb within layouts/application
+  [1m[36mBankSubsidiary Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? LIMIT ?[0m  [["bank_id", 1], ["LIMIT", 1]]
+  ↳ app/views/banks/show.html.erb:10
+  [1m[36mBankSubsidiary Load (0.2ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 1]]
+  ↳ app/views/banks/show.html.erb:12
+  Rendered banks/show.html.erb within layouts/application (Duration: 14.5ms | Allocations: 1962)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 180ms (Views: 177.2ms | ActiveRecord: 0.8ms | Allocations: 7388)
+
+
+Started GET "/banks" for ::1 at 2020-04-19 02:49:26 +0200
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.2ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  ↳ app/views/banks/index.html.erb:14
+  Rendered banks/index.html.erb within layouts/application (Duration: 3.3ms | Allocations: 1359)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 25ms (Views: 22.5ms | ActiveRecord: 0.2ms | Allocations: 5578)
+
+
+Started GET "/banks/2" for ::1 at 2020-04-19 02:49:50 +0200
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBank Load (0.3ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:73:in `set_bank'
+  Rendering banks/show.html.erb within layouts/application
+  [1m[36mBankSubsidiary Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? LIMIT ?[0m  [["bank_id", 2], ["LIMIT", 1]]
+  ↳ app/views/banks/show.html.erb:10
+  Rendered banks/show.html.erb within layouts/application (Duration: 8.3ms | Allocations: 811)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 53ms (Views: 49.9ms | ActiveRecord: 0.6ms | Allocations: 6094)
+
+
+Started GET "/banks" for ::1 at 2020-04-19 02:49:52 +0200
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.2ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  ↳ app/views/banks/index.html.erb:14
+  Rendered banks/index.html.erb within layouts/application (Duration: 3.4ms | Allocations: 1102)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 52ms (Views: 49.8ms | ActiveRecord: 0.2ms | Allocations: 5170)
+
+
+Started GET "/banks/3" for ::1 at 2020-04-19 02:49:54 +0200
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mBank Load (0.2ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:73:in `set_bank'
+  Rendering banks/show.html.erb within layouts/application
+  [1m[36mBankSubsidiary Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? LIMIT ?[0m  [["bank_id", 3], ["LIMIT", 1]]
+  ↳ app/views/banks/show.html.erb:10
+  [1m[36mBankSubsidiary Load (0.1ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 3]]
+  ↳ app/views/banks/show.html.erb:12
+  Rendered banks/show.html.erb within layouts/application (Duration: 6.7ms | Allocations: 1543)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 36ms (Views: 32.8ms | ActiveRecord: 0.7ms | Allocations: 6812)
+
+
+Started GET "/banks/3" for ::1 at 2020-04-19 02:50:41 +0200
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mBank Load (0.3ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:73:in `set_bank'
+  Rendering banks/show.html.erb within layouts/application
+  [1m[36mBankSubsidiary Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? LIMIT ?[0m  [["bank_id", 3], ["LIMIT", 1]]
+  ↳ app/views/banks/show.html.erb:10
+  [1m[36mBankSubsidiary Load (0.2ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 3]]
+  ↳ app/views/banks/show.html.erb:12
+  Rendered banks/show.html.erb within layouts/application (Duration: 6.1ms | Allocations: 1818)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 28ms (Views: 23.6ms | ActiveRecord: 0.9ms | Allocations: 7351)
+
+
+Started GET "/banks" for ::1 at 2020-04-19 02:50:43 +0200
+Processing by BanksController#index as HTML
+  Rendering banks/index.html.erb within layouts/application
+  [1m[36mBank Load (0.3ms)[0m  [1m[34mSELECT "banks".* FROM "banks"[0m
+  ↳ app/views/banks/index.html.erb:14
+  Rendered banks/index.html.erb within layouts/application (Duration: 4.2ms | Allocations: 1355)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 39ms (Views: 37.4ms | ActiveRecord: 0.3ms | Allocations: 6264)
+
+
+Started GET "/banks/new" for ::1 at 2020-04-19 02:50:52 +0200
+Processing by BanksController#new as HTML
+  Rendering banks/new.html.erb within layouts/application
+  Rendered banks/_form.html.erb (Duration: 7.2ms | Allocations: 1099)
+  Rendered banks/new.html.erb within layouts/application (Duration: 8.6ms | Allocations: 1445)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 32ms (Views: 28.0ms | ActiveRecord: 0.0ms | Allocations: 6531)
+
+
+Started POST "/banks" for ::1 at 2020-04-19 02:51:01 +0200
+Processing by BanksController#create as HTML
+  Parameters: {"authenticity_token"=>"69gE+z4RAZCZLmUrnKGM0jBPYWnI3Gm6fDJgvnDnowS9imH2nFhX3+PWF4O9gwG7XJRtse6d/IRZ7Tw0KBk/8A==", "bank"=>{"name"=>"test", "bank_subsidiaries_attributes"=>{"0"=>{"address"=>"", "_destroy"=>"0"}}}, "commit"=>"Submit"}
+[31mUnpermitted parameter: :_destroy[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/banks_controller.rb:32:in `block in create'
+  [1m[36mBank Create (1.0ms)[0m  [1m[32mINSERT INTO "banks" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "test"], ["created_at", "2020-04-19 00:51:01.083230"], ["updated_at", "2020-04-19 00:51:01.083230"]]
+  ↳ app/controllers/banks_controller.rb:32:in `block in create'
+  [1m[35m (2.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/banks_controller.rb:32:in `block in create'
+Redirected to http://localhost:3000/banks/6
+Completed 302 Found in 19ms (ActiveRecord: 3.2ms | Allocations: 2793)
+
+
+Started GET "/banks/6" for ::1 at 2020-04-19 02:51:01 +0200
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mBank Load (0.4ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:73:in `set_bank'
+  Rendering banks/show.html.erb within layouts/application
+  [1m[36mBankSubsidiary Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? LIMIT ?[0m  [["bank_id", 6], ["LIMIT", 1]]
+  ↳ app/views/banks/show.html.erb:10
+  Rendered banks/show.html.erb within layouts/application (Duration: 4.0ms | Allocations: 814)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 24ms (Views: 19.8ms | ActiveRecord: 1.0ms | Allocations: 5396)
+
+
+Started GET "/banks/6/edit" for ::1 at 2020-04-19 02:51:04 +0200
+Processing by BanksController#edit as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mBank Load (0.1ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:73:in `set_bank'
+  Rendering banks/edit.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (0.2ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 6]]
+  ↳ app/views/banks/_form.html.erb:22
+  Rendered banks/_form.html.erb (Duration: 4.8ms | Allocations: 1338)
+  Rendered banks/edit.html.erb within layouts/application (Duration: 8.0ms | Allocations: 1610)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 77ms (Views: 74.2ms | ActiveRecord: 0.3ms | Allocations: 7184)
+
+
+Started PATCH "/banks/6" for ::1 at 2020-04-19 02:51:12 +0200
+Processing by BanksController#update as HTML
+  Parameters: {"authenticity_token"=>"B0H2lc2aZoWm2NODWFstbPdvL7djW4cfe0uq5WzzkAOe4ZbqOWbPv1FQPSL3co1IQEKMQ0mCz5Q75hGmoSsIDA==", "bank"=>{"name"=>"test", "bank_subsidiaries_attributes"=>{"0"=>{"address"=>"direccion prueba", "_destroy"=>"0"}}}, "commit"=>"Submit", "id"=>"6"}
+  [1m[36mBank Load (0.3ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:73:in `set_bank'
+[31mUnpermitted parameter: :_destroy[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/banks_controller.rb:46:in `block in update'
+  [1m[36mBankSubsidiary Create (2.3ms)[0m  [1m[32mINSERT INTO "bank_subsidiaries" ("address", "bank_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address", "direccion prueba"], ["bank_id", 6], ["created_at", "2020-04-19 00:51:12.201989"], ["updated_at", "2020-04-19 00:51:12.201989"]]
+  ↳ app/controllers/banks_controller.rb:46:in `block in update'
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/banks_controller.rb:46:in `block in update'
+Redirected to http://localhost:3000/banks/6
+Completed 302 Found in 18ms (ActiveRecord: 4.5ms | Allocations: 4294)
+
+
+Started GET "/banks/6" for ::1 at 2020-04-19 02:51:12 +0200
+Processing by BanksController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mBank Load (0.3ms)[0m  [1m[34mSELECT "banks".* FROM "banks" WHERE "banks"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/banks_controller.rb:73:in `set_bank'
+  Rendering banks/show.html.erb within layouts/application
+  [1m[36mBankSubsidiary Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ? LIMIT ?[0m  [["bank_id", 6], ["LIMIT", 1]]
+  ↳ app/views/banks/show.html.erb:10
+  [1m[36mBankSubsidiary Load (0.4ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."bank_id" = ?[0m  [["bank_id", 6]]
+  ↳ app/views/banks/show.html.erb:12
+  Rendered banks/show.html.erb within layouts/application (Duration: 11.8ms | Allocations: 1449)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 33ms (Views: 29.4ms | ActiveRecord: 1.1ms | Allocations: 6040)
+
+
+Started GET "/bank_subsidiaries/13" for ::1 at 2020-04-19 02:51:15 +0200
+Processing by BankSubsidiariesController#show as HTML
+  Parameters: {"id"=>"13"}
+  [1m[36mBankSubsidiary Load (0.2ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/controllers/bank_subsidiaries_controller.rb:67:in `set_bank_subsidiary'
+  Rendering bank_subsidiaries/show.html.erb within layouts/application
+  Rendered bank_subsidiaries/show.html.erb within layouts/application (Duration: 3.3ms | Allocations: 261)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 61ms (Views: 57.5ms | ActiveRecord: 0.2ms | Allocations: 6098)
+
+
+Started GET "/bank_subsidiaries/13/edit" for ::1 at 2020-04-19 02:51:17 +0200
+Processing by BankSubsidiariesController#edit as HTML
+  Parameters: {"id"=>"13"}
+  [1m[36mBankSubsidiary Load (0.4ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/controllers/bank_subsidiaries_controller.rb:67:in `set_bank_subsidiary'
+  Rendering bank_subsidiaries/edit.html.erb within layouts/application
+  Rendered bank_subsidiaries/_form.html.erb (Duration: 4.8ms | Allocations: 1106)
+  Rendered bank_subsidiaries/edit.html.erb within layouts/application (Duration: 15.0ms | Allocations: 1492)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 44ms (Views: 41.5ms | ActiveRecord: 0.4ms | Allocations: 6894)
+
+
+Started GET "/bank_subsidiaries" for ::1 at 2020-04-19 02:51:25 +0200
+Processing by BankSubsidiariesController#index as HTML
+  Rendering bank_subsidiaries/index.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (0.3ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries"[0m
+  ↳ app/views/bank_subsidiaries/index.html.erb:15
+  Rendered bank_subsidiaries/index.html.erb within layouts/application (Duration: 30.7ms | Allocations: 2434)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 58ms (Views: 56.1ms | ActiveRecord: 0.3ms | Allocations: 7319)
+
+
+Started GET "/bank_subsidiaries" for ::1 at 2020-04-19 02:51:40 +0200
+Processing by BankSubsidiariesController#index as HTML
+  Rendering bank_subsidiaries/index.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (0.3ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries"[0m
+  ↳ app/views/bank_subsidiaries/index.html.erb:15
+  Rendered bank_subsidiaries/index.html.erb within layouts/application (Duration: 8.8ms | Allocations: 2396)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 23ms (Views: 19.4ms | ActiveRecord: 0.3ms | Allocations: 7429)
+
+
+Started GET "/bank_subsidiaries" for ::1 at 2020-04-19 02:52:01 +0200
+Processing by BankSubsidiariesController#index as HTML
+  Rendering bank_subsidiaries/index.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (1.2ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries"[0m
+  ↳ app/views/bank_subsidiaries/index.html.erb:15
+  Rendered bank_subsidiaries/index.html.erb within layouts/application (Duration: 11.7ms | Allocations: 2405)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 36ms (Views: 30.5ms | ActiveRecord: 1.2ms | Allocations: 7431)
+
+
+Started GET "/bank_subsidiaries/new" for ::1 at 2020-04-19 02:52:06 +0200
+Processing by BankSubsidiariesController#new as HTML
+  Rendering bank_subsidiaries/new.html.erb within layouts/application
+  Rendered bank_subsidiaries/_form.html.erb (Duration: 3.4ms | Allocations: 1059)
+  Rendered bank_subsidiaries/new.html.erb within layouts/application (Duration: 7.9ms | Allocations: 1408)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 27ms (Views: 23.6ms | ActiveRecord: 0.0ms | Allocations: 5637)
+
+
+Started GET "/bank_subsidiaries/new" for ::1 at 2020-04-19 02:52:42 +0200
+Processing by BankSubsidiariesController#new as HTML
+  Rendering bank_subsidiaries/new.html.erb within layouts/application
+  Rendered bank_subsidiaries/_form.html.erb (Duration: 3.3ms | Allocations: 968)
+  Rendered bank_subsidiaries/new.html.erb within layouts/application (Duration: 5.7ms | Allocations: 1311)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 35ms (Views: 30.7ms | ActiveRecord: 0.0ms | Allocations: 6349)
+
+
+Started GET "/bank_subsidiaries/new" for ::1 at 2020-04-19 02:53:37 +0200
+Processing by BankSubsidiariesController#new as HTML
+  Rendering bank_subsidiaries/new.html.erb within layouts/application
+  Rendered bank_subsidiaries/_form.html.erb (Duration: 3.0ms | Allocations: 968)
+  Rendered bank_subsidiaries/new.html.erb within layouts/application (Duration: 5.0ms | Allocations: 1311)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 33ms (Views: 29.6ms | ActiveRecord: 0.0ms | Allocations: 6345)
+
+
+Started GET "/bank_subsidiaries/new" for ::1 at 2020-04-19 02:53:40 +0200
+Processing by BankSubsidiariesController#new as HTML
+  Rendering bank_subsidiaries/new.html.erb within layouts/application
+  Rendered bank_subsidiaries/_form.html.erb (Duration: 1.6ms | Allocations: 635)
+  Rendered bank_subsidiaries/new.html.erb within layouts/application (Duration: 1.9ms | Allocations: 722)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 9ms (Views: 8.0ms | ActiveRecord: 0.0ms | Allocations: 4799)
+
+
+Started GET "/bank_subsidiaries" for ::1 at 2020-04-19 02:53:44 +0200
+Processing by BankSubsidiariesController#index as HTML
+  Rendering bank_subsidiaries/index.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (0.2ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries"[0m
+  ↳ app/views/bank_subsidiaries/index.html.erb:15
+  Rendered bank_subsidiaries/index.html.erb within layouts/application (Duration: 7.1ms | Allocations: 2405)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 26ms (Views: 24.3ms | ActiveRecord: 0.2ms | Allocations: 6622)
+
+
+Started GET "/bank_subsidiaries/1/edit" for ::1 at 2020-04-19 02:53:46 +0200
+Processing by BankSubsidiariesController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBankSubsidiary Load (0.3ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/bank_subsidiaries_controller.rb:67:in `set_bank_subsidiary'
+  Rendering bank_subsidiaries/edit.html.erb within layouts/application
+  Rendered bank_subsidiaries/_form.html.erb (Duration: 6.4ms | Allocations: 683)
+  Rendered bank_subsidiaries/edit.html.erb within layouts/application (Duration: 7.6ms | Allocations: 956)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 45ms (Views: 40.1ms | ActiveRecord: 0.3ms | Allocations: 5670)
+
+
+Started GET "/bank_subsidiaries/1" for ::1 at 2020-04-19 02:53:50 +0200
+Processing by BankSubsidiariesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBankSubsidiary Load (0.2ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/bank_subsidiaries_controller.rb:67:in `set_bank_subsidiary'
+  Rendering bank_subsidiaries/show.html.erb within layouts/application
+  Rendered bank_subsidiaries/show.html.erb within layouts/application (Duration: 1.4ms | Allocations: 258)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 62ms (Views: 55.1ms | ActiveRecord: 0.2ms | Allocations: 5669)
+
+
+Started GET "/bank_subsidiaries/1" for ::1 at 2020-04-19 02:54:12 +0200
+Processing by BankSubsidiariesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBankSubsidiary Load (0.4ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/bank_subsidiaries_controller.rb:67:in `set_bank_subsidiary'
+  Rendering bank_subsidiaries/show.html.erb within layouts/application
+  Rendered bank_subsidiaries/show.html.erb within layouts/application (Duration: 0.8ms | Allocations: 284)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 18ms (Views: 11.2ms | ActiveRecord: 0.4ms | Allocations: 5815)
+
+
+Started GET "/bank_subsidiaries/1/edit" for ::1 at 2020-04-19 02:54:25 +0200
+Processing by BankSubsidiariesController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBankSubsidiary Load (0.4ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/bank_subsidiaries_controller.rb:67:in `set_bank_subsidiary'
+  Rendering bank_subsidiaries/edit.html.erb within layouts/application
+  Rendered bank_subsidiaries/_form.html.erb (Duration: 2.8ms | Allocations: 1014)
+  Rendered bank_subsidiaries/edit.html.erb within layouts/application (Duration: 6.7ms | Allocations: 1427)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 47ms (Views: 42.6ms | ActiveRecord: 0.4ms | Allocations: 6835)
+
+
+Started GET "/bank_subsidiaries" for ::1 at 2020-04-19 02:54:26 +0200
+Processing by BankSubsidiariesController#index as HTML
+  Rendering bank_subsidiaries/index.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (0.9ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries"[0m
+  ↳ app/views/bank_subsidiaries/index.html.erb:15
+  Rendered bank_subsidiaries/index.html.erb within layouts/application (Duration: 16.1ms | Allocations: 2405)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 85ms (Views: 82.0ms | ActiveRecord: 0.9ms | Allocations: 7315)
+
+
+Started GET "/bank_subsidiaries/1/edit" for ::1 at 2020-04-19 02:54:40 +0200
+Processing by BankSubsidiariesController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBankSubsidiary Load (0.2ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries" WHERE "bank_subsidiaries"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/bank_subsidiaries_controller.rb:67:in `set_bank_subsidiary'
+  Rendering bank_subsidiaries/edit.html.erb within layouts/application
+  Rendered bank_subsidiaries/_form.html.erb (Duration: 3.1ms | Allocations: 677)
+  Rendered bank_subsidiaries/edit.html.erb within layouts/application (Duration: 5.0ms | Allocations: 810)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 49ms (Views: 45.4ms | ActiveRecord: 0.2ms | Allocations: 5403)
+
+
+Started GET "/bank_subsidiaries" for ::1 at 2020-04-19 02:54:41 +0200
+Processing by BankSubsidiariesController#index as HTML
+  Rendering bank_subsidiaries/index.html.erb within layouts/application
+  [1m[36mBankSubsidiary Load (0.3ms)[0m  [1m[34mSELECT "bank_subsidiaries".* FROM "bank_subsidiaries"[0m
+  ↳ app/views/bank_subsidiaries/index.html.erb:15
+  Rendered bank_subsidiaries/index.html.erb within layouts/application (Duration: 7.0ms | Allocations: 2138)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 60ms (Views: 58.7ms | ActiveRecord: 0.3ms | Allocations: 6909)
+
+
